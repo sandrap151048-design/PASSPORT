@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .test { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+        img { max-width: 400px; height: 200px; object-fit: cover; }
+        .status { padding: 5px; margin-top: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Image Loading Test</h1>
+    <p>This page tests if external images can load in your browser.</p>
+    
+    <div class="test">
+        <h3>Study Abroad Service</h3>
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop&q=80" 
+             onload="document.getElementById('img1').className='status success'; document.getElementById('img1').textContent='✓ Image loaded successfully!'"
+             onerror="document.getElementById('img1').className='status error'; document.getElementById('img1').textContent='✗ Image failed to load - Network blocking external URLs'">
+        <div id="img1" class="status">Loading...</div>
+    </div>
+
+    <div class="test">
+        <h3>Visa Services</h3>
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop&q=80"
+             onload="document.getElementById('img2').className='status success'; document.getElementById('img2').textContent='✓ Image loaded successfully!'"
+             onerror="document.getElementById('img2').className='status error'; document.getElementById('img2').textContent='✗ Image failed to load - Network blocking external URLs'">
+        <div id="img2" class="status">Loading...</div>
+    </div>
+
+    <div class="test">
+        <h3>Malta Destination</h3>
+        <img src="https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&h=600&fit=crop&q=80"
+             onload="document.getElementById('img3').className='status success'; document.getElementById('img3').textContent='✓ Image loaded successfully!'"
+             onerror="document.getElementById('img3').className='status error'; document.getElementById('img3').textContent='✗ Image failed to load - Network blocking external URLs'">
+        <div id="img3" class="status">Loading...</div>
+    </div>
+
+    <hr>
+    <h2>Solution:</h2>
+    <p>If images show "failed to load", you need to download them locally:</p>
+    <ol>
+        <li>Open terminal/command prompt</li>
+        <li>Run: <code>cd client</code></li>
+        <li>Run: <code>node download-images.js</code></li>
+    </ol>
+</body>
+</html>

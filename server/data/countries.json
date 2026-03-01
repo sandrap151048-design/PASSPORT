@@ -1,0 +1,1508 @@
+[
+  {
+    "name": "United Kingdom",
+    "slug": "united-kingdom",
+    "description": "The UK is home to some of the world's oldest and most prestigious universities including Oxford and Cambridge. With a rich academic heritage, shorter degree programs, and a multicultural environment, the UK offers exceptional education and global recognition.",
+    "imageUrl": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop&q=80",
+    "highlights": [
+      "World-renowned universities with centuries of academic excellence",
+      "Shorter degree duration - 3 years for undergraduate, 1 year for master's",
+      "Post-Study Work Visa allows 2-3 years of work after graduation",
+      "Rich cultural heritage and historical significance",
+      "Gateway to Europe with easy travel opportunities",
+      "English language immersion in its birthplace"
+    ],
+    "universities": [
+      "University of Oxford",
+      "University of Cambridge",
+      "Imperial College London",
+      "London School of Economics",
+      "University College London",
+      "University of Edinburgh",
+      "King's College London",
+      "University of Manchester"
+    ],
+    "whyStudy": "The UK combines academic excellence with cultural richness. British degrees are recognized worldwide and the shorter program duration means lower overall costs. You'll experience diverse perspectives in a truly international environment while being at the heart of European culture and history.",
+    "intakePeriods": [
+      "September/October (Main)",
+      "January/February (Limited programs)"
+    ],
+    "tuitionFees": {
+      "undergraduate": "£10,000 - £38,000 per year",
+      "postgraduate": "£12,000 - £45,000 per year",
+      "doctoral": "£15,000 - £35,000 per year"
+    },
+    "costOfLiving": {
+      "accommodation": "£400 - £1,000 per month (London: £800-£1,500)",
+      "food": "£150 - £300 per month",
+      "transport": "£50 - £150 per month",
+      "overall": "£800 - £1,500 per month (London: £1,200-£2,000)"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "A-levels or equivalent for undergraduate",
+        "Bachelor's degree with 60%+ for postgraduate",
+        "Strong academic record and relevant coursework"
+      ],
+      "languageRequirements": "IELTS: 6.0-7.0 or TOEFL iBT: 80-100 (varies by university and program)",
+      "standardizedTests": [
+        "IELTS/TOEFL",
+        "UKCAT/BMAT (for medicine)",
+        "LNAT (for law)"
+      ],
+      "documents": [
+        "Valid passport",
+        "Academic transcripts",
+        "English language test scores",
+        "Personal statement",
+        "Letters of recommendation",
+        "CV/Resume",
+        "Portfolio (for creative courses)"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "Student Visa (formerly Tier 4)",
+      "processingTime": "3 weeks (standard) or 5 days (priority service)",
+      "requirements": [
+        "Valid passport",
+        "CAS (Confirmation of Acceptance for Studies)",
+        "Financial proof (£1,334/month for 9 months)",
+        "TB test certificate",
+        "ATAS certificate (for certain courses)",
+        "Visa application fee payment"
+      ],
+      "workPermit": "Students can work 20 hours/week during term time and full-time during holidays. Graduate Route visa allows 2 years (3 years for PhD) of post-study work."
+    },
+    "scholarships": [
+      {
+        "name": "Chevening Scholarships",
+        "description": "UK government scholarship for outstanding leaders covering full tuition, living expenses, and flights",
+        "amount": "Full funding"
+      },
+      {
+        "name": "Commonwealth Scholarships",
+        "description": "For students from Commonwealth countries covering tuition and living costs",
+        "amount": "Full funding"
+      },
+      {
+        "name": "GREAT Scholarships",
+        "description": "Minimum £10,000 towards tuition fees for students from selected countries",
+        "amount": "£10,000"
+      },
+      {
+        "name": "University Scholarships",
+        "description": "Merit-based scholarships offered by individual universities",
+        "amount": "£2,000 - £10,000"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "International students can work up to 20 hours per week during term time and full-time during holidays. Many universities have career services to help find part-time work.",
+      "afterStudy": "Graduate Route visa allows 2 years of work (3 years for PhD graduates) in any job at any skill level. This provides excellent opportunity to gain UK work experience.",
+      "partTimeJobs": [
+        "Retail assistant",
+        "Restaurant server",
+        "Campus ambassador",
+        "Library assistant",
+        "Tutor",
+        "Administrative assistant",
+        "Customer service representative"
+      ],
+      "averageWages": "£9-£12 per hour (National Minimum Wage: £10.42 for 21+)"
+    },
+    "studentLife": {
+      "climate": "Temperate maritime climate with mild winters and cool summers. Rainfall throughout the year. Temperature ranges from 2°C in winter to 22°C in summer.",
+      "culture": "Rich history and cultural diversity. British culture values politeness, queuing, and afternoon tea. Vibrant arts scene with world-class museums, theaters, and music venues. Strong pub culture and sports enthusiasm especially football.",
+      "transportation": "Excellent public transport with buses, trains, and underground (in major cities). Student railcards offer 1/3 discount. Most cities are walkable and bike-friendly.",
+      "activities": [
+        "Football matches and sports events",
+        "Museum and gallery visits",
+        "Theater and West End shows",
+        "Music festivals",
+        "Pub culture and social gatherings",
+        "Historical site tours",
+        "Student societies and clubs",
+        "Weekend trips across Europe"
+      ],
+      "safety": "Generally very safe with low crime rates. Good emergency services (999). Universities have 24/7 security and support services."
+    },
+    "accommodation": {
+      "types": [
+        "University Halls",
+        "Private Student Accommodation",
+        "Private Renting",
+        "Homestay"
+      ],
+      "cost": "£400 - £1,000 per month (varies by city)",
+      "tips": [
+        "Apply for university accommodation early",
+        "Check what's included (bills, internet, etc.)",
+        "Visit properties before signing",
+        "Understand tenancy agreements",
+        "Get contents insurance",
+        "Join university accommodation Facebook groups"
+      ]
+    },
+    "healthcare": {
+      "system": "National Health Service (NHS) provides free healthcare to residents. High-quality medical care available.",
+      "insurance": "International students pay Immigration Health Surcharge (£470/year) as part of visa application. This gives access to NHS services.",
+      "cost": "NHS services are free with IHS payment. Prescriptions: £9.65 per item. Dental and optical services may have charges.",
+      "facilities": [
+        "University health centers",
+        "NHS hospitals and GP surgeries",
+        "Walk-in centers",
+        "Pharmacies",
+        "Mental health services",
+        "Emergency services (A&E)"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Research",
+          "description": "Research universities and courses. Check entry requirements and prepare for English tests.",
+          "duration": "12-18 months before"
+        },
+        {
+          "phase": "UCAS Application",
+          "description": "Apply through UCAS for undergraduate (up to 5 choices) or directly to universities for postgraduate.",
+          "duration": "September-January"
+        },
+        {
+          "phase": "Offers",
+          "description": "Receive conditional or unconditional offers from universities.",
+          "duration": "January-May"
+        },
+        {
+          "phase": "Accept Offer",
+          "description": "Accept firm and insurance choice. Meet conditions (grades, English test).",
+          "duration": "May-June"
+        },
+        {
+          "phase": "CAS & Visa",
+          "description": "Receive CAS from university and apply for student visa.",
+          "duration": "June-August"
+        },
+        {
+          "phase": "Arrival",
+          "description": "Attend pre-departure briefing, book accommodation, and travel to UK.",
+          "duration": "August-September"
+        }
+      ],
+      "deadlines": "UCAS deadline: January 15 for most courses, October 15 for Oxford, Cambridge, and Medicine. Postgraduate: varies by university, typically March-July.",
+      "tips": [
+        "Use UCAS for undergraduate applications",
+        "Write a strong personal statement",
+        "Apply early for better accommodation",
+        "Check scholarship deadlines",
+        "Prepare financial documents early",
+        "Book visa appointment in advance"
+      ]
+    },
+    "isActive": true,
+    "_id": "rwtqpsm24",
+    "createdAt": "2026-02-28T04:48:54.632Z"
+  },
+  {
+    "name": "United States",
+    "slug": "united-states",
+    "description": "The USA hosts the largest number of international students worldwide, offering diverse programs, cutting-edge research opportunities, and world-renowned universities. With its innovation-driven education system and multicultural environment, the US provides an unparalleled academic experience.",
+    "imageUrl": "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800&h=600&fit=crop&q=80",
+    "highlights": [
+      "Home to top-ranked universities globally including Harvard, MIT, and Stanford",
+      "Extensive scholarship and financial aid opportunities for international students",
+      "Optional Practical Training (OPT) allows up to 3 years of work experience",
+      "Diverse range of programs across all fields of study",
+      "Innovation and research-focused education system",
+      "Multicultural campus environment with students from 200+ countries"
+    ],
+    "universities": [
+      "Harvard University",
+      "Massachusetts Institute of Technology (MIT)",
+      "Stanford University",
+      "Yale University",
+      "Princeton University",
+      "Columbia University",
+      "University of California, Berkeley",
+      "University of Chicago"
+    ],
+    "whyStudy": "The United States offers unmatched academic excellence, cutting-edge research facilities, and a flexible education system that encourages critical thinking and innovation. With the world's largest international student population, you'll experience diverse perspectives and build a global network. The US degree is highly valued worldwide, opening doors to career opportunities globally.",
+    "intakePeriods": [
+      "Fall (August/September)",
+      "Spring (January)",
+      "Summer (May/June)"
+    ],
+    "tuitionFees": {
+      "undergraduate": "$20,000 - $50,000 per year",
+      "postgraduate": "$25,000 - $60,000 per year",
+      "doctoral": "$28,000 - $55,000 per year"
+    },
+    "costOfLiving": {
+      "accommodation": "$800 - $1,500 per month",
+      "food": "$300 - $600 per month",
+      "transport": "$100 - $200 per month",
+      "overall": "$1,500 - $2,500 per month"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "High school diploma with strong GPA (3.0+) for undergraduate",
+        "Bachelor's degree with good grades for postgraduate",
+        "Strong academic transcripts and letters of recommendation"
+      ],
+      "languageRequirements": "TOEFL iBT: 80-100 or IELTS: 6.5-7.5 (varies by university)",
+      "standardizedTests": [
+        "TOEFL/IELTS",
+        "SAT/ACT (for undergrad)",
+        "GRE/GMAT (for grad programs)"
+      ],
+      "documents": [
+        "Valid passport",
+        "Academic transcripts and certificates",
+        "Letters of recommendation (2-3)",
+        "Statement of Purpose/Personal Essay",
+        "Resume/CV",
+        "Financial documents showing proof of funds"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "F-1 Student Visa",
+      "processingTime": "3-5 weeks",
+      "requirements": [
+        "Valid passport",
+        "Form I-20 from your university",
+        "SEVIS fee payment receipt",
+        "Visa interview appointment",
+        "Financial proof"
+      ],
+      "workPermit": "F-1 students can work on-campus up to 20 hours/week during semester. Eligible for CPT and OPT (12-36 months post-graduation)."
+    },
+    "scholarships": [
+      {
+        "name": "Fulbright Program",
+        "description": "Fully funded scholarship for graduate students covering tuition, living, and airfare",
+        "amount": "Full funding"
+      },
+      {
+        "name": "University Merit Scholarships",
+        "description": "Merit-based scholarships offered by individual universities",
+        "amount": "$5,000 - Full tuition"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "F-1 students can work on-campus up to 20 hours per week during term and full-time during breaks.",
+      "afterStudy": "OPT allows students to work for 12 months (36 months for STEM) after graduation.",
+      "partTimeJobs": [
+        "Campus library assistant",
+        "Research assistant",
+        "Teaching assistant",
+        "Campus cafe staff"
+      ],
+      "averageWages": "$12-$25 per hour"
+    },
+    "studentLife": {
+      "climate": "Varies by region - from tropical in Florida to cold winters in the Northeast.",
+      "culture": "American culture values independence, innovation, and diversity. Campus life is vibrant with sports and clubs.",
+      "transportation": "Public transit available in major cities. Car common in others. Universities provide shuttles.",
+      "activities": [
+        "College sports",
+        "Student clubs",
+        "Cultural festivals",
+        "Outdoor activities",
+        "Concerts"
+      ],
+      "safety": "Generally safe with 24/7 campus security and emergency systems."
+    },
+    "accommodation": {
+      "types": [
+        "On-Campus Dorms",
+        "Off-Campus Apartments",
+        "Shared Housing",
+        "Homestay"
+      ],
+      "cost": "$800 - $1,500 per month",
+      "tips": [
+        "Book on-campus early",
+        "Research neighborhood safety",
+        "Understand lease terms",
+        "Get renter's insurance"
+      ]
+    },
+    "healthcare": {
+      "system": "Private healthcare system. High quality but expensive without insurance.",
+      "insurance": "Mandatory student health insurance ($1,500-$3,000/year).",
+      "cost": "Varies by plan, typically covers basic medical needs.",
+      "facilities": [
+        "University health centers",
+        "Hospitals",
+        "Urgent care",
+        "Pharmacies"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Research",
+          "description": "Research programs and prepare for tests.",
+          "duration": "12 months before"
+        },
+        {
+          "phase": "Submission",
+          "description": "Submit online apps, essays, and documents.",
+          "duration": "October-January"
+        }
+      ],
+      "deadlines": "Fall: January-March. Spring: September-October.",
+      "tips": [
+        "Start early",
+        "Tailor SOP",
+        "Strong letters of recommendation",
+        "Proofread application"
+      ]
+    },
+    "isActive": true,
+    "_id": "3r8zv2ftt",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "Canada",
+    "slug": "canada",
+    "description": "Canada is known for its welcoming immigration policies, high-quality education, and multicultural society. With affordable tuition, excellent research opportunities, and pathways to permanent residency, Canada is a top choice for international students seeking quality education and a better future.",
+    "imageUrl": "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800&h=600&fit=crop&q=80",
+    "highlights": [
+      "High-quality education at affordable costs compared to US and UK",
+      "Welcoming immigration policies with pathways to permanent residency",
+      "Safe, peaceful, and multicultural society",
+      "Post-Graduation Work Permit (PGWP) up to 3 years",
+      "Excellent quality of life and natural beauty",
+      "Bilingual environment (English and French)"
+    ],
+    "universities": [
+      "University of Toronto",
+      "University of British Columbia",
+      "McGill University",
+      "University of Waterloo",
+      "McMaster University",
+      "University of Alberta",
+      "Western University",
+      "Queen's University"
+    ],
+    "whyStudy": "Canada offers world-class education in a safe, welcoming environment. With lower tuition costs than US/UK, excellent work opportunities, and clear pathways to immigration, Canada provides both quality education and a promising future. The multicultural society ensures international students feel at home.",
+    "intakePeriods": [
+      "Fall (September) - Main intake",
+      "Winter (January) - Secondary intake",
+      "Summer (May) - Limited programs"
+    ],
+    "tuitionFees": {
+      "undergraduate": "CAD $15,000 - $35,000 per year",
+      "postgraduate": "CAD $18,000 - $40,000 per year",
+      "doctoral": "CAD $7,000 - $20,000 per year (often funded)"
+    },
+    "costOfLiving": {
+      "accommodation": "CAD $600 - $1,500 per month",
+      "food": "CAD $300 - $500 per month",
+      "transport": "CAD $80 - $150 per month",
+      "overall": "CAD $1,200 - $2,000 per month"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "High school diploma with 70%+ for undergraduate",
+        "Bachelor's degree with 65%+ for postgraduate",
+        "Strong academic performance in relevant subjects"
+      ],
+      "languageRequirements": "IELTS: 6.5 overall (6.0 each band) or TOEFL iBT: 88-100",
+      "standardizedTests": [
+        "IELTS/TOEFL",
+        "GRE (for some graduate programs)",
+        "GMAT (for MBA programs)"
+      ],
+      "documents": [
+        "Valid passport",
+        "Academic transcripts",
+        "English test scores",
+        "Statement of Purpose",
+        "Letters of recommendation",
+        "Resume/CV",
+        "Portfolio (if required)"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "Study Permit",
+      "processingTime": "4-8 weeks (varies by country)",
+      "requirements": [
+        "Letter of acceptance from DLI",
+        "Proof of funds (CAD $10,000 + tuition)",
+        "Valid passport",
+        "Passport photos",
+        "Medical exam (if required)",
+        "Police certificate",
+        "Statement of Purpose"
+      ],
+      "workPermit": "Study permit allows 20 hours/week work during studies and full-time during breaks. PGWP allows 1-3 years of work after graduation (duration based on program length)."
+    },
+    "scholarships": [
+      {
+        "name": "Vanier Canada Graduate Scholarships",
+        "description": "For doctoral students showing leadership and high academic achievement",
+        "amount": "CAD $50,000/year for 3 years"
+      },
+      {
+        "name": "Ontario Graduate Scholarship",
+        "description": "For graduate students in Ontario universities",
+        "amount": "CAD $15,000"
+      },
+      {
+        "name": "University Entrance Scholarships",
+        "description": "Merit-based scholarships for international students",
+        "amount": "CAD $5,000 - $30,000"
+      },
+      {
+        "name": "Lester B. Pearson Scholarship",
+        "description": "Full scholarship at University of Toronto for exceptional students",
+        "amount": "Full tuition + living expenses"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "International students can work 20 hours per week during academic sessions and full-time during scheduled breaks without a separate work permit.",
+      "afterStudy": "Post-Graduation Work Permit (PGWP) allows 8 months to 3 years of work depending on program length. Excellent pathway to permanent residency through Express Entry.",
+      "partTimeJobs": [
+        "Retail sales",
+        "Food service",
+        "Customer service",
+        "Campus jobs",
+        "Tutoring",
+        "Administrative support",
+        "Delivery services"
+      ],
+      "averageWages": "CAD $14-$18 per hour (Minimum wage varies by province: $15-$16.50)"
+    },
+    "studentLife": {
+      "climate": "Varies by region. Cold winters (-20°C to -30°C) with snow, warm summers (20°C to 30°C). Coastal areas milder. Four distinct seasons.",
+      "culture": "Extremely multicultural and welcoming. Canadian values include politeness, diversity, and inclusivity. Strong emphasis on outdoor activities and nature. Bilingual country (English and French).",
+      "transportation": "Good public transit in major cities (buses, metro, streetcars). Student discounts available. Many cities are bike-friendly. Car useful in smaller cities.",
+      "activities": [
+        "Ice hockey and winter sports",
+        "Hiking and outdoor adventures",
+        "Multicultural festivals",
+        "Music and arts events",
+        "Skiing and snowboarding",
+        "Summer camping",
+        "Student clubs and societies",
+        "Niagara Falls and national parks visits"
+      ],
+      "safety": "One of the safest countries in the world. Low crime rates, excellent emergency services, and strong rule of law. Universities have campus security."
+    },
+    "accommodation": {
+      "types": [
+        "On-Campus Residence",
+        "Off-Campus Apartments",
+        "Shared Housing",
+        "Homestay"
+      ],
+      "cost": "CAD $600 - $1,500 per month",
+      "tips": [
+        "Apply for residence early",
+        "Check if utilities are included",
+        "Understand lease terms",
+        "Get tenant insurance",
+        "Join university housing groups",
+        "Consider proximity to campus and transit"
+      ]
+    },
+    "healthcare": {
+      "system": "Universal healthcare system. Quality varies by province. International students may need private insurance.",
+      "insurance": "Some provinces provide health coverage to international students (BC, Alberta, Saskatchewan). Others require private insurance (CAD $600-$900/year).",
+      "cost": "With provincial coverage: free basic healthcare. Private insurance: CAD $600-$900/year. Doctor visits and prescriptions may have costs.",
+      "facilities": [
+        "University health services",
+        "Walk-in clinics",
+        "Hospitals",
+        "Pharmacies",
+        "Mental health services",
+        "Dental clinics"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Research & Preparation",
+          "description": "Research programs, check requirements, prepare for English tests.",
+          "duration": "12-18 months before"
+        },
+        {
+          "phase": "Applications",
+          "description": "Apply directly to universities (no centralized system). Each university has own portal.",
+          "duration": "9-12 months before"
+        }
+      ],
+      "deadlines": "Fall intake: January-March. Winter intake: September-October. Varies by university and program. Apply early for scholarships.",
+      "tips": [
+        "Apply to multiple universities",
+        "Check program-specific requirements",
+        "Apply early for better scholarship chances",
+        "Prepare strong SOP",
+        "Show sufficient funds for visa",
+        "Get police clearance early",
+        "Book biometrics appointment quickly"
+      ]
+    },
+    "isActive": true,
+    "_id": "l0ajjvs6w",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "Australia",
+    "slug": "australia",
+    "description": "Australia offers world-class education in a vibrant, multicultural environment with excellent post-study work opportunities.",
+    "imageUrl": "/images/dest-australia.png",
+    "highlights": [
+      "High quality of life",
+      "Post-study work rights",
+      "Beautiful climate and lifestyle",
+      "Strong job market"
+    ],
+    "universities": [
+      "Melbourne",
+      "Sydney",
+      "ANU",
+      "UNSW"
+    ],
+    "whyStudy": "Great weather and top tier universities.",
+    "intakePeriods": [
+      "February",
+      "July"
+    ],
+    "tuitionFees": {
+      "undergraduate": "AUD ,000 - ,000 per year",
+      "postgraduate": "AUD ,000 - ,000 per year",
+      "doctoral": "AUD ,000 - ,000 per year"
+    },
+    "costOfLiving": {
+      "accommodation": "AUD  - ,500",
+      "food": "AUD ",
+      "transport": "AUD ",
+      "overall": "AUD ,500 - ,500"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "High school diploma",
+        "Bachelors degree"
+      ],
+      "languageRequirements": "IELTS 6.5",
+      "standardizedTests": [
+        "IELTS",
+        "PTE"
+      ],
+      "documents": [
+        "Passport",
+        "Transcripts"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "Student Visa (Subclass 500)",
+      "processingTime": "4 weeks",
+      "requirements": [
+        "CoE",
+        "OSHC",
+        "GTE"
+      ],
+      "workPermit": "48 hours per fortnight"
+    },
+    "scholarships": [
+      {
+        "name": "Australia Awards",
+        "description": "Government scholarship",
+        "amount": "Full funding"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "48 hours per fortnight",
+      "afterStudy": "2-4 years post study work visa",
+      "partTimeJobs": [
+        "Retail",
+        "Hospitality"
+      ],
+      "averageWages": "AUD .38 per hour"
+    },
+    "studentLife": {
+      "climate": "Sunny and warm",
+      "culture": "Laid back, outdoorsy",
+      "transportation": "Good public transport",
+      "activities": [
+        "Surfing",
+        "BBQ",
+        "Sports"
+      ],
+      "safety": "Very safe"
+    },
+    "accommodation": {
+      "types": [
+        "Homestay",
+        "Student Village",
+        "Private Rent"
+      ],
+      "cost": "AUD  -  per week",
+      "tips": [
+        "Book early"
+      ]
+    },
+    "healthcare": {
+      "system": "Excellent",
+      "insurance": "OSHC required",
+      "cost": "Included in OSHC",
+      "facilities": [
+        "Hospitals",
+        "Clinics"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Research",
+          "description": "Find course",
+          "duration": "1 month"
+        }
+      ],
+      "deadlines": "Varies",
+      "tips": [
+        "Apply 6 months prior"
+      ]
+    },
+    "isActive": true,
+    "_id": "gnc6ny0p8",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "Germany",
+    "slug": "germany",
+    "description": "Germany offers tuition-free education at public universities with strong engineering and technology programs.",
+    "imageUrl": "/images/dest-germany.png",
+    "highlights": [
+      "Low or no tuition fees",
+      "Strong economy and job market",
+      "Engineering excellence",
+      "Central European location"
+    ],
+    "universities": [
+      "TUM",
+      "LMU Munich",
+      "Heidelberg",
+      "RWTH Aachen"
+    ],
+    "whyStudy": "Top engineering and free tuition.",
+    "intakePeriods": [
+      "Winter (Oct)",
+      "Summer (Apr)"
+    ],
+    "tuitionFees": {
+      "undergraduate": "Free at public universities",
+      "postgraduate": "Free or low cost",
+      "doctoral": "Free"
+    },
+    "costOfLiving": {
+      "accommodation": "EUR 300 - 600",
+      "food": "EUR 200",
+      "transport": "EUR 50",
+      "overall": "EUR 861 (Blocked account amount)"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "Abitur equivalent"
+      ],
+      "languageRequirements": "IELTS 6.5 or TestDaF",
+      "standardizedTests": [
+        "IELTS",
+        "TestDaF"
+      ],
+      "documents": [
+        "Passport",
+        "Transcripts"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "National Visa",
+      "processingTime": "4-8 weeks",
+      "requirements": [
+        "Blocked account",
+        "Admission letter"
+      ],
+      "workPermit": "120 full days or 240 half days"
+    },
+    "scholarships": [
+      {
+        "name": "DAAD",
+        "description": "Government funding",
+        "amount": "Varies"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "120 days per year",
+      "afterStudy": "18 months job seeker visa",
+      "partTimeJobs": [
+        "Research assistant",
+        "Retail"
+      ],
+      "averageWages": "EUR 12 per hour"
+    },
+    "studentLife": {
+      "climate": "Temperate",
+      "culture": "Punctual, rich history",
+      "transportation": "Excellent trains and buses",
+      "activities": [
+        "Travel",
+        "Museums",
+        "Oktoberfest"
+      ],
+      "safety": "Very safe"
+    },
+    "accommodation": {
+      "types": [
+        "Studentenwerk",
+        "WG (Shared)"
+      ],
+      "cost": "EUR 300 - 500",
+      "tips": [
+        "Apply to Studentenwerk early"
+      ]
+    },
+    "healthcare": {
+      "system": "Excellent public health",
+      "insurance": "Mandatory statutory health insurance (~EUR 110/mo)",
+      "cost": "Covered by insurance",
+      "facilities": [
+        "Doctors",
+        "Hospitals"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Uni Assist",
+          "description": "Apply via portal",
+          "duration": "2 months"
+        }
+      ],
+      "deadlines": "Jan 15 / July 15",
+      "tips": [
+        "Learn basic German"
+      ]
+    },
+    "isActive": true,
+    "_id": "9d7zgb07e",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "Singapore",
+    "slug": "singapore",
+    "description": "A global education hub in Asia offering world-class universities and a strategic location for career opportunities.",
+    "imageUrl": "/images/destination-singapore.jpg",
+    "highlights": [
+      "Top Asian universities",
+      "Safe and modern city",
+      "Gateway to Asia-Pacific",
+      "Strong business environment"
+    ],
+    "universities": [
+      "NUS",
+      "NTU",
+      "SMU",
+      "SUTD"
+    ],
+    "whyStudy": "Safe, high tech, top asian universities.",
+    "intakePeriods": [
+      "August"
+    ],
+    "tuitionFees": {
+      "undergraduate": "SGD 15,000 - 30,000",
+      "postgraduate": "SGD 20,000 - 40,000",
+      "doctoral": "SGD 20,000"
+    },
+    "costOfLiving": {
+      "accommodation": "SGD 600 - 1500",
+      "food": "SGD 400",
+      "transport": "SGD 100",
+      "overall": "SGD 1200 - 2500"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "High school diploma",
+        "Bachelors"
+      ],
+      "languageRequirements": "IELTS 6.5",
+      "standardizedTests": [
+        "IELTS"
+      ],
+      "documents": [
+        "Passport",
+        "Transcripts"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "Student Pass",
+      "processingTime": "2-4 weeks",
+      "requirements": [
+        "IPA letter",
+        "Medical exam"
+      ],
+      "workPermit": "16 hours per week (certain institutions)"
+    },
+    "scholarships": [
+      {
+        "name": "ASEAN Scholarship",
+        "description": "For ASEAN nationals",
+        "amount": "Varies"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "16 hours per week",
+      "afterStudy": "1-3 years depending on job",
+      "partTimeJobs": [
+        "Retail",
+        "F&B"
+      ],
+      "averageWages": "SGD 10 per hour"
+    },
+    "studentLife": {
+      "climate": "Tropical",
+      "culture": "Diverse, food-focused",
+      "transportation": "Excellent MRT",
+      "activities": [
+        "Eating",
+        "Shopping"
+      ],
+      "safety": "Extremely safe"
+    },
+    "accommodation": {
+      "types": [
+        "HDB room",
+        "Condo",
+        "Hostel"
+      ],
+      "cost": "SGD 600 - 1500",
+      "tips": [
+        "Look near MRT"
+      ]
+    },
+    "healthcare": {
+      "system": "World class",
+      "insurance": "University insurance",
+      "cost": "Varies",
+      "facilities": [
+        "Polyclinics",
+        "Hospitals"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Apply",
+          "description": "Send application",
+          "duration": "1 month"
+        }
+      ],
+      "deadlines": "Varies",
+      "tips": [
+        "Prepare early"
+      ]
+    },
+    "isActive": true,
+    "_id": "gsicvr9jg",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "Malta",
+    "slug": "malta",
+    "description": "Malta offers a unique blend of high-quality education, English-speaking environment, and Mediterranean lifestyle at an affordable cost.",
+    "imageUrl": "/images/destination-malta.jpg",
+    "highlights": [
+      "EU Member State",
+      "English-Speaking",
+      "Affordable Tuition",
+      "Mediterranean Climate",
+      "Work While Study"
+    ],
+    "universities": [
+      "University of Malta",
+      "MCAST",
+      "American University of Malta"
+    ],
+    "whyStudy": "English-speaking EU country with great climate.",
+    "intakePeriods": [
+      "October",
+      "February"
+    ],
+    "tuitionFees": {
+      "undergraduate": "EUR 6,000 - 10,000",
+      "postgraduate": "EUR 7,000 - 12,000",
+      "doctoral": "EUR 8,000"
+    },
+    "costOfLiving": {
+      "accommodation": "EUR 400 - 700",
+      "food": "EUR 250",
+      "transport": "EUR 30",
+      "overall": "EUR 800 - 1,200"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "High school diploma",
+        "Bachelors"
+      ],
+      "languageRequirements": "IELTS 6.0",
+      "standardizedTests": [
+        "IELTS"
+      ],
+      "documents": [
+        "Passport"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "National D Visa",
+      "processingTime": "4-8 weeks",
+      "requirements": [
+        "Admission letter",
+        "Proof of funds"
+      ],
+      "workPermit": "20 hours per week (after 90 days)"
+    },
+    "scholarships": [
+      {
+        "name": "Endeavour",
+        "description": "Government scheme",
+        "amount": "Varies"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "20 hours per week",
+      "afterStudy": "6 months job seeker",
+      "partTimeJobs": [
+        "Hospitality",
+        "Tourism"
+      ],
+      "averageWages": "EUR 6 per hour"
+    },
+    "studentLife": {
+      "climate": "Sunny Mediterranean",
+      "culture": "Relaxed, historic",
+      "transportation": "Buses",
+      "activities": [
+        "Beaches",
+        "Diving",
+        "History"
+      ],
+      "safety": "Very safe"
+    },
+    "accommodation": {
+      "types": [
+        "Shared flat",
+        "Residences"
+      ],
+      "cost": "EUR 400 - 600",
+      "tips": [
+        "Book early"
+      ]
+    },
+    "healthcare": {
+      "system": "Good public health",
+      "insurance": "Private insurance required",
+      "cost": "Varies",
+      "facilities": [
+        "Mater Dei Hospital"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Apply",
+          "description": "Direct to uni",
+          "duration": "1 month"
+        }
+      ],
+      "deadlines": "Summer",
+      "tips": [
+        "Prepare docs early"
+      ]
+    },
+    "isActive": true,
+    "_id": "vugerwybb",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "South Korea",
+    "slug": "south-korea",
+    "description": "South Korea offers cutting-edge technology, rich culture, and excellent scholarship opportunities for international students.",
+    "imageUrl": "/images/destination-south-korea.jpg",
+    "highlights": [
+      "Advanced Technology",
+      "Quality Education",
+      "Scholarship Opportunities",
+      "Rich Culture",
+      "Safe Environment"
+    ],
+    "universities": [
+      "Seoul National University",
+      "KAIST",
+      "Yonsei University",
+      "Korea University"
+    ],
+    "whyStudy": "Top tech and generous scholarships.",
+    "intakePeriods": [
+      "March",
+      "September"
+    ],
+    "tuitionFees": {
+      "undergraduate": "USD 3,000 - 8,000",
+      "postgraduate": "USD 4,000 - 10,000",
+      "doctoral": "USD 4,000"
+    },
+    "costOfLiving": {
+      "accommodation": "USD 300 - 800",
+      "food": "USD 300",
+      "transport": "USD 50",
+      "overall": "USD 800 - 1,500"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "High school diploma"
+      ],
+      "languageRequirements": "TOPIK or IELTS",
+      "standardizedTests": [
+        "TOPIK"
+      ],
+      "documents": [
+        "Passport",
+        "Apostilled docs"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "D-2 Visa",
+      "processingTime": "2-4 weeks",
+      "requirements": [
+        "CoA",
+        "Bank statement"
+      ],
+      "workPermit": "20 hours per week"
+    },
+    "scholarships": [
+      {
+        "name": "GKS",
+        "description": "Global Korea Scholarship",
+        "amount": "Full funding"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "20 hours per week",
+      "afterStudy": "D-10 Job Seeker visa",
+      "partTimeJobs": [
+        "Teaching",
+        "Retail"
+      ],
+      "averageWages": "KRW 9,620 per hour"
+    },
+    "studentLife": {
+      "climate": "Four distinct seasons",
+      "culture": "Fast-paced, high tech",
+      "transportation": "Excellent subways",
+      "activities": [
+        "K-pop",
+        "Food",
+        "Palaces"
+      ],
+      "safety": "Extremely safe"
+    },
+    "accommodation": {
+      "types": [
+        "Goshiwon",
+        "Dorms",
+        "One-room"
+      ],
+      "cost": "USD 300 - 600",
+      "tips": [
+        "Dorms are cheapest"
+      ]
+    },
+    "healthcare": {
+      "system": "Excellent public",
+      "insurance": "NHIS mandatory",
+      "cost": "Covered by NHIS",
+      "facilities": [
+        "Top tier hospitals"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Apply",
+          "description": "Online portal",
+          "duration": "2 months"
+        }
+      ],
+      "deadlines": "October / May",
+      "tips": [
+        "Learn basic Korean"
+      ]
+    },
+    "isActive": true,
+    "_id": "5stidulsq",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "Malaysia",
+    "slug": "malaysia",
+    "description": "A multicultural hub offering affordable, high-quality international degrees through branch campuses and local universities.",
+    "imageUrl": "/images/destination-malaysia.jpg",
+    "highlights": [
+      "Multicultural Society",
+      "Affordable Education",
+      "English Programs",
+      "Strategic Location",
+      "Quality Universities"
+    ],
+    "universities": [
+      "University of Malaya",
+      "UTM",
+      "Monash Malaysia",
+      "Nottingham Malaysia"
+    ],
+    "whyStudy": "Affordable western degrees via branch campuses.",
+    "intakePeriods": [
+      "February",
+      "July",
+      "September"
+    ],
+    "tuitionFees": {
+      "undergraduate": "USD 3,000 - 10,000",
+      "postgraduate": "USD 4,000 - 12,000",
+      "doctoral": "USD 5,000"
+    },
+    "costOfLiving": {
+      "accommodation": "USD 150 - 400",
+      "food": "USD 200",
+      "transport": "USD 30",
+      "overall": "USD 400 - 800"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "High school"
+      ],
+      "languageRequirements": "IELTS 6.0",
+      "standardizedTests": [
+        "IELTS"
+      ],
+      "documents": [
+        "Passport",
+        "Medical check"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "Student Pass",
+      "processingTime": "4-6 weeks",
+      "requirements": [
+        "EMGS Approval",
+        "Offer letter"
+      ],
+      "workPermit": "Part time work allowed under strict conditions"
+    },
+    "scholarships": [
+      {
+        "name": "MIS",
+        "description": "Malaysian Int. Scholarship",
+        "amount": "Tuition + Living"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "Restricted (20hrs in breaks)",
+      "afterStudy": "Limited",
+      "partTimeJobs": [
+        "Campus jobs"
+      ],
+      "averageWages": "RM 10 per hour"
+    },
+    "studentLife": {
+      "climate": "Tropical, humid",
+      "culture": "Diverse (Malay, Chinese, Indian)",
+      "transportation": "Good trains in KL",
+      "activities": [
+        "Food",
+        "Shopping",
+        "Nature"
+      ],
+      "safety": "Generally safe"
+    },
+    "accommodation": {
+      "types": [
+        "On campus",
+        "Condos"
+      ],
+      "cost": "USD 150 - 400",
+      "tips": [
+        "Look for apartments near transit"
+      ]
+    },
+    "healthcare": {
+      "system": "Good mix of public/private",
+      "insurance": "Required via EMGS",
+      "cost": "Affordable",
+      "facilities": [
+        "Clinics everywhere"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "EMGS",
+          "description": "Apply via EMGS",
+          "duration": "1-2 months"
+        }
+      ],
+      "deadlines": "Rolling",
+      "tips": [
+        "Apply early for visa"
+      ]
+    },
+    "isActive": true,
+    "_id": "glf6m6nj1",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "New Zealand",
+    "slug": "new-zealand",
+    "description": "New Zealand offers world-class education with an emphasis on research, surrounded by stunning natural landscapes.",
+    "imageUrl": "/images/destination-new-zealand.jpg",
+    "highlights": [
+      "World-Class Education",
+      "Post-Study Work Visa",
+      "Beautiful Nature",
+      "Safe Country",
+      "Research Opportunities"
+    ],
+    "universities": [
+      "University of Auckland",
+      "University of Otago",
+      "Victoria University"
+    ],
+    "whyStudy": "Safe, beautiful, excellent research.",
+    "intakePeriods": [
+      "February",
+      "July"
+    ],
+    "tuitionFees": {
+      "undergraduate": "NZD 25,000 - 40,000",
+      "postgraduate": "NZD 30,000 - 45,000",
+      "doctoral": "NZD 7,000 (Domestic rate!)"
+    },
+    "costOfLiving": {
+      "accommodation": "NZD 800 - 1,500",
+      "food": "NZD 400",
+      "transport": "NZD 100",
+      "overall": "NZD 1,500 - 2,500"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "High school diploma"
+      ],
+      "languageRequirements": "IELTS 6.5",
+      "standardizedTests": [
+        "IELTS"
+      ],
+      "documents": [
+        "Passport",
+        "Transcripts"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "Fee Paying Student Visa",
+      "processingTime": "3-6 weeks",
+      "requirements": [
+        "Offer of Place",
+        "Funds proof"
+      ],
+      "workPermit": "20 hours per week"
+    },
+    "scholarships": [
+      {
+        "name": "Manaaki",
+        "description": "NZ Gov Scholarship",
+        "amount": "Full funding"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "20 hours per week",
+      "afterStudy": "Up to 3 years post-study focus",
+      "partTimeJobs": [
+        "Retail",
+        "Hospitality",
+        "Farming"
+      ],
+      "averageWages": "NZD 22.70 per hour"
+    },
+    "studentLife": {
+      "climate": "Temperate",
+      "culture": "Friendly, outdoorsy",
+      "transportation": "Buses",
+      "activities": [
+        "Hiking",
+        "Extreme sports"
+      ],
+      "safety": "Extremely safe"
+    },
+    "accommodation": {
+      "types": [
+        "Halls",
+        "Flatting",
+        "Homestay"
+      ],
+      "cost": "NZD 200 - 400 per week",
+      "tips": [
+        "Flatting is popular"
+      ]
+    },
+    "healthcare": {
+      "system": "High quality public/private",
+      "insurance": "Studentsafe required",
+      "cost": "Covered by Studentsafe",
+      "facilities": [
+        "Excellent hospitals"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Apply",
+          "description": "Direct to uni",
+          "duration": "1 month"
+        }
+      ],
+      "deadlines": "October / May",
+      "tips": [
+        "Ensure funds are ready"
+      ]
+    },
+    "isActive": true,
+    "_id": "21l6fh6yd",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "Mauritius",
+    "slug": "mauritius",
+    "description": "An emerging educational hub in the Indian Ocean, Mauritius offers quality education in a paradise setting at low costs.",
+    "imageUrl": "/images/destination-mauritius.jpg",
+    "highlights": [
+      "Island Paradise",
+      "Affordable Living",
+      "English & French",
+      "Growing Education Hub",
+      "Beautiful Beaches"
+    ],
+    "universities": [
+      "University of Mauritius",
+      "Middlesex Mauritius",
+      "Aberystwyth Mauritius"
+    ],
+    "whyStudy": "Bilingual environment and British branch campuses.",
+    "intakePeriods": [
+      "September",
+      "January"
+    ],
+    "tuitionFees": {
+      "undergraduate": "USD 3,000 - 7,000",
+      "postgraduate": "USD 4,000 - 8,000",
+      "doctoral": "USD 5,000"
+    },
+    "costOfLiving": {
+      "accommodation": "USD 200 - 400",
+      "food": "USD 150",
+      "transport": "USD 30",
+      "overall": "USD 400 - 800"
+    },
+    "admissionRequirements": {
+      "academicQualifications": [
+        "High school diploma"
+      ],
+      "languageRequirements": "IELTS 6.0",
+      "standardizedTests": [
+        "IELTS"
+      ],
+      "documents": [
+        "Passport",
+        "Medical certificate"
+      ]
+    },
+    "visaInformation": {
+      "visaType": "Student Visa",
+      "processingTime": "4 weeks",
+      "requirements": [
+        "Admission letter",
+        "Medical"
+      ],
+      "workPermit": "20 hours per week"
+    },
+    "scholarships": [
+      {
+        "name": "Mauritius-Africa",
+        "description": "For African students",
+        "amount": "Full funding"
+      }
+    ],
+    "workOpportunities": {
+      "duringStudy": "20 hours per week",
+      "afterStudy": "Limited",
+      "partTimeJobs": [
+        "Tourism",
+        "Retail"
+      ],
+      "averageWages": "MUR 100 per hour"
+    },
+    "studentLife": {
+      "climate": "Tropical",
+      "culture": "Diverse (Indian, African, French)",
+      "transportation": "Buses and light rail",
+      "activities": [
+        "Beaches",
+        "Water sports"
+      ],
+      "safety": "Very safe"
+    },
+    "accommodation": {
+      "types": [
+        "University housing",
+        "Renting"
+      ],
+      "cost": "USD 150 - 300",
+      "tips": [
+        "Rent near campus"
+      ]
+    },
+    "healthcare": {
+      "system": "Free public health",
+      "insurance": "Private recommended",
+      "cost": "Free or low cost",
+      "facilities": [
+        "Public hospitals"
+      ]
+    },
+    "applicationProcess": {
+      "timeline": [
+        {
+          "phase": "Apply",
+          "description": "Submit directly",
+          "duration": "1 month"
+        }
+      ],
+      "deadlines": "Flexible",
+      "tips": [
+        "Get medical done early"
+      ]
+    },
+    "isActive": true,
+    "_id": "kq1natgu2",
+    "createdAt": "2026-02-28T04:48:54.633Z"
+  },
+  {
+    "name": "USA",
+    "description": "tyhjnk",
+    "imageUrl": "",
+    "highlights": [],
+    "universities": [],
+    "isActive": true,
+    "_id": "5frrzxsj6mm5wikab",
+    "createdAt": "2026-02-28T05:49:26.195Z"
+  }
+]

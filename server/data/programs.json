@@ -1,0 +1,352 @@
+[
+  {
+    "_id": "ug_1",
+    "name": "BA in Management",
+    "type": "undergraduate",
+    "duration": "3 Years",
+    "description": "Comprehensive study of business management principles and practices.",
+    "highlights": [
+      "Business Fundamentals",
+      "Leadership Skills",
+      "Organizational Behavior"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_2",
+    "name": "BA in Marketing",
+    "type": "undergraduate",
+    "duration": "3 Years",
+    "description": "Exploration of marketing strategies, consumer behavior, and brand management.",
+    "highlights": [
+      "Market Research",
+      "Digital Marketing",
+      "Consumer Psychology"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_3",
+    "name": "BA in Management with Human Resources Management",
+    "type": "undergraduate",
+    "duration": "3 Years",
+    "description": "Focused on personnel management, recruitment, and organizational development.",
+    "highlights": [
+      "HR Strategy",
+      "Employee Relations",
+      "Talent Management"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_4",
+    "name": "BA in Tourism and Events Management",
+    "type": "undergraduate",
+    "duration": "3 Years",
+    "description": "Training for careers in the dynamic hospitality, tourism, and event sectors.",
+    "highlights": [
+      "Hospitality Management",
+      "Event Planning",
+      "Sustainable Tourism"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_5",
+    "name": "BA in Accounting and Finance",
+    "type": "undergraduate",
+    "duration": "3 Years",
+    "description": "Core principles of financial accounting, management accounting, and corporate finance.",
+    "highlights": [
+      "Financial Reporting",
+      "Audit & Assurance",
+      "Taxation"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_6",
+    "name": "BA in Management and Psychology",
+    "type": "undergraduate",
+    "duration": "3 Years",
+    "description": "Interdisciplinary program combining business leadership with psychological insights.",
+    "highlights": [
+      "Social Psychology",
+      "Managerial Decision Making",
+      "Behavioral Economics"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_7",
+    "name": "BA Information Technology for Business",
+    "type": "undergraduate",
+    "duration": "3 Years",
+    "description": "Bridging the gap between technology and business strategy.",
+    "highlights": [
+      "Information Systems",
+      "Business Analytics",
+      "Database Management"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_8",
+    "name": "Bachelor of Arts Top-Up Degree in Business and Management",
+    "type": "undergraduate",
+    "duration": "1 Year",
+    "description": "Designed for diploma holders to upgrade to a full Bachelor's degree.",
+    "highlights": [
+      "Strategic Management",
+      "Research Project",
+      "Global Business"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_9",
+    "name": "Undergraduate Diploma in Management",
+    "type": "undergraduate",
+    "duration": "1-2 Years",
+    "description": "Foundational knowledge in management for early-career professionals.",
+    "highlights": [
+      "Intro to Management",
+      "Operations Management",
+      "Marketing Basics"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_10",
+    "name": "Award in Foundation in Business and Management",
+    "type": "undergraduate",
+    "duration": "1 Year",
+    "description": "Preparatory program for undergraduate business studies.",
+    "highlights": [
+      "Academic English",
+      "Business Studies",
+      "Study Skills"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_11",
+    "name": "Award in Business Studies",
+    "type": "undergraduate",
+    "duration": "1 Year",
+    "description": "Introductory award focusing on essential business concepts.",
+    "highlights": [
+      "Economics",
+      "Accounting",
+      "Organization Theory"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_12",
+    "name": "Diploma in Financial Crime Compliance & Anti-Money Laundering",
+    "type": "undergraduate",
+    "duration": "1 Year",
+    "description": "Specialized training in financial regulation and crime prevention.",
+    "highlights": [
+      "AML Laws",
+      "Risk Assessment",
+      "Compliance Frameworks"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_13",
+    "name": "Undergraduate Diploma in Foundation of Medical Science",
+    "type": "undergraduate",
+    "duration": "1 Year",
+    "description": "Foundation for students entering medical and health degrees.",
+    "highlights": [
+      "Anatomy & Physiology",
+      "Biochemistry",
+      "Medical Ethics"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "ug_14",
+    "name": "Award in General Intensive English (as a Foreign Language)",
+    "type": "undergraduate",
+    "duration": "6-12 Months",
+    "description": "Intensive language training for non-native speakers.",
+    "highlights": [
+      "Speaking & Listening",
+      "Academic Writing",
+      "Grammar"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_1",
+    "name": "Master of Business Administration (MBA)",
+    "type": "postgraduate",
+    "duration": "1-2 Years",
+    "description": "Advanced leadership and strategic management training.",
+    "highlights": [
+      "Corporate Finance",
+      "Strategic Leadership",
+      "Global Markets"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_2",
+    "name": "MBA in Logistics and Supply Chain Management",
+    "type": "postgraduate",
+    "duration": "1-2 Years",
+    "description": "Specialized MBA focused on global supply chain and logistics optimization.",
+    "highlights": [
+      "Supply Chain Strategy",
+      "Procurement",
+      "Inventory Management"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_3",
+    "name": "Master of Science in Health and Social Care Management",
+    "type": "postgraduate",
+    "duration": "1-2 Years",
+    "description": "Management training for the health and social services sectors.",
+    "highlights": [
+      "Healthcare Policy",
+      "Quality in Healthcare",
+      "Care Management"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_4",
+    "name": "Master of Science in Management",
+    "type": "postgraduate",
+    "duration": "1-2 Years",
+    "description": "Broadly based advanced management study for various sectors.",
+    "highlights": [
+      "Management Theory",
+      "Quantitative Methods",
+      "Innovation Management"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_5",
+    "name": "Master of Science in Marketing Management",
+    "type": "postgraduate",
+    "duration": "1-2 Years",
+    "description": "Advanced marketing concepts and strategic marketing management.",
+    "highlights": [
+      "Marketing Analytics",
+      "Brand Communication",
+      "Service Marketing"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_6",
+    "name": "Master of Science in Management with Human Resources",
+    "type": "postgraduate",
+    "duration": "1-2 Years",
+    "description": "Combining advanced general management with a focus on HR strategy.",
+    "highlights": [
+      "Strategic HRM",
+      "Global Talent Management",
+      "Organization Development"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_7",
+    "name": "Master of Science in Tourism and Events Management",
+    "type": "postgraduate",
+    "duration": "1-2 Years",
+    "description": "Leading-edge study of management in tourism and events.",
+    "highlights": [
+      "Global Events Operations",
+      "Tourism Policy",
+      "Stakeholder Management"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_8",
+    "name": "MS in Leadership and Change Management",
+    "type": "postgraduate",
+    "duration": "1-2 Years",
+    "description": "Focused on leading through organizational change and transformation.",
+    "highlights": [
+      "Change Models",
+      "Leadership Ethics",
+      "Crisis Management"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_9",
+    "name": "Executive Master of Business Administration (EMBA)",
+    "type": "postgraduate",
+    "duration": "1-2 Years",
+    "description": "Accelerated MBA for experienced professionals and executives.",
+    "highlights": [
+      "Executive Leadership",
+      "Boardroom Dynamics",
+      "Advanced Finance"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "pg_10",
+    "name": "Postgraduate Diploma in Management (with pathways available)",
+    "type": "postgraduate",
+    "duration": "1 Year",
+    "description": "Intensive postgraduate qualification with specialized career pathways.",
+    "highlights": [
+      "Project Management",
+      "Business Strategy",
+      "Finance & Law"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  },
+  {
+    "_id": "dr_1",
+    "name": "Doctor of Business Administration (DBA)",
+    "type": "doctoral",
+    "duration": "3-4 Years",
+    "description": "Professional doctorate focusing on real-world business research and application.",
+    "highlights": [
+      "Applied Research",
+      "Theory Integration",
+      "Advanced Practice"
+    ],
+    "isActive": true,
+    "createdAt": "2026-02-28T11:46:00Z"
+  }
+]

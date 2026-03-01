@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Service Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .image-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .image-card h3 {
+            margin: 10px 0;
+            color: #e74c3c;
+        }
+        .image-card p {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .download-btn:hover {
+            background: #c0392b;
+        }
+        .filename {
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Download Service Images</h1>
+    
+    <div class="instructions">
+        <h2>Instructions:</h2>
+        <ol>
+            <li>Click the "Download Image" button for each service below</li>
+            <li>Save each image with the exact filename shown (e.g., service-study-abroad.jpg)</li>
+            <li>Place all downloaded images in: <code>client/public/images/</code> folder</li>
+            <li>Refresh your website to see the images</li>
+        </ol>
+    </div>
+
+    <div class="image-grid">
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop&q=80" alt="Study Abroad">
+            <h3>Study Abroad</h3>
+            <p>Students studying together</p>
+            <p class="filename">service-study-abroad.jpg</p>
+            <a href="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop&q=80" download="service-study-abroad.jpg" class="download-btn">Download Image</a>
+        </div>
+
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop&q=80" alt="Visa Services">
+            <h3>Visa Services</h3>
+            <p>Passport and travel documents</p>
+            <p class="filename">service-visa.jpg</p>
+            <a href="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop&q=80" download="service-visa.jpg" class="download-btn">Download Image</a>
+        </div>
+
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1569098644584-210bcd375b59?w=800&h=600&fit=crop&q=80" alt="Immigration">
+            <h3>Immigration</h3>
+            <p>Airport immigration scene</p>
+            <p class="filename">service-immigration.jpg</p>
+            <a href="https://images.unsplash.com/photo-1569098644584-210bcd375b59?w=800&h=600&fit=crop&q=80" download="service-immigration.jpg" class="download-btn">Download Image</a>
+        </div>
+
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&q=80" alt="Work Visa">
+            <h3>Work Visa</h3>
+            <p>Business office setting</p>
+            <p class="filename">service-work-visa.jpg</p>
+            <a href="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&q=80" download="service-work-visa.jpg" class="download-btn">Download Image</a>
+        </div>
+
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=600&fit=crop&q=80" alt="Scholarship">
+            <h3>Scholarship Guidance</h3>
+            <p>Student with laptop</p>
+            <p class="filename">service-scholarship.jpg</p>
+            <a href="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=600&fit=crop&q=80" download="service-scholarship.jpg" class="download-btn">Download Image</a>
+        </div>
+
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&q=80" alt="Settlement">
+            <h3>Settlement Support</h3>
+            <p>Moving and housing</p>
+            <p class="filename">service-settlement.jpg</p>
+            <a href="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&q=80" download="service-settlement.jpg" class="download-btn">Download Image</a>
+        </div>
+    </div>
+</body>
+</html>
