@@ -82,15 +82,9 @@ export default function Contact() {
               expanding our global reach.
             </h1>
 
-            <p className="text-xl md:text-2xl text-blue-50/90 font-light mb-12 normal-case max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-blue-50/90 font-light normal-case max-w-3xl mx-auto">
               Contact us through our office that is most convenient to you.
             </p>
-
-            <div className="flex justify-center">
-              <button className="px-10 py-4 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-bold rounded-xl shadow-lg shadow-orange-900/20 hover:shadow-orange-900/40 hover:-translate-y-1 transition-all">
-                Get in Touch With Us
-              </button>
-            </div>
           </div>
         </div>
 
