@@ -1,34 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const { getCollection, saveCollection, generateId } = require('../utils/db');
+const University = require('../models/University');
 
 // Get all universities
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const universities = getCollection('universities').filter(u => u.isActive !== false);
-        res.json(universities.reverse());
+        const universities = await University.find({ isActive: { $ne: false } }).sort({ createdAt: -1 });
+        res.json(universities);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-// Get all universities (admin)
-router.get('/admin', (req, res) => {
+// Get all universities (admin) - must be before /:id
+router.get('/admin', async (req, res) => {
     try {
-        const universities = getCollection('universities');
-        res.json(universities.reverse());
+        const universities = await University.find().sort({ createdAt: -1 });
+        res.json(universities);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
 // Create university
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const university = { ...req.body, _id: generateId(), createdAt: new Date().toISOString() };
-        const universities = getCollection('universities');
-        universities.push(university);
-        saveCollection('universities', universities);
+        const university = new University(req.body);
+        await university.save();
         res.status(201).json(university);
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -36,25 +34,20 @@ router.post('/', (req, res) => {
 });
 
 // Update university
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
-        let universities = getCollection('universities');
-        const index = universities.findIndex(u => u._id === req.params.id);
-        if (index === -1) return res.status(404).json({ message: 'Not found' });
-
-        universities[index] = { ...universities[index], ...req.body };
-        saveCollection('universities', universities);
-        res.json(universities[index]);
+        const university = await University.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!university) return res.status(404).json({ message: 'Not found' });
+        res.json(university);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
 
 // Delete university
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
-        const universities = getCollection('universities').filter(u => u._id !== req.params.id);
-        saveCollection('universities', universities);
+        await University.findByIdAndDelete(req.params.id);
         res.json({ message: 'University deleted' });
     } catch (error) {
         res.status(500).json({ message: error.message });

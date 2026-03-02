@@ -1,44 +1,42 @@
 const express = require('express');
 const router = express.Router();
-const { getCollection, saveCollection, generateId } = require('../utils/db');
+const Program = require('../models/Program');
 
-// Get all programs (admin)
-router.get('/admin', (req, res) => {
+// Get all programs (admin) - must be before /:id
+router.get('/admin', async (req, res) => {
   try {
-    const programs = getCollection('programs');
-    res.json(programs.reverse());
+    const programs = await Program.find().sort({ createdAt: -1 });
+    res.json(programs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 // Get all programs
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const programs = getCollection('programs').filter(p => p.isActive !== false);
-    res.json(programs.reverse());
+    const programs = await Program.find({ isActive: { $ne: false } }).sort({ createdAt: -1 });
+    res.json(programs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 // Get programs by type
-router.get('/type/:type', (req, res) => {
+router.get('/type/:type', async (req, res) => {
   try {
-    const programs = getCollection('programs').filter(p => p.type === req.params.type && p.isActive !== false);
-    res.json(programs.reverse());
+    const programs = await Program.find({ type: req.params.type, isActive: { $ne: false } }).sort({ createdAt: -1 });
+    res.json(programs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 // Create program
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const program = { ...req.body, _id: generateId(), createdAt: new Date().toISOString() };
-    const programs = getCollection('programs');
-    programs.push(program);
-    saveCollection('programs', programs);
+    const program = new Program(req.body);
+    await program.save();
     res.status(201).json(program);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -46,25 +44,20 @@ router.post('/', (req, res) => {
 });
 
 // Update program
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
-    let programs = getCollection('programs');
-    const index = programs.findIndex(p => p._id === req.params.id);
-    if (index === -1) return res.status(404).json({ message: 'Not found' });
-
-    programs[index] = { ...programs[index], ...req.body };
-    saveCollection('programs', programs);
-    res.json(programs[index]);
+    const program = await Program.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!program) return res.status(404).json({ message: 'Not found' });
+    res.json(program);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
 // Delete program
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const programs = getCollection('programs').filter(p => p._id !== req.params.id);
-    saveCollection('programs', programs);
+    await Program.findByIdAndDelete(req.params.id);
     res.json({ message: 'Program deleted' });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -72,9 +65,9 @@ router.delete('/:id', (req, res) => {
 });
 
 // Get single program
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const program = getCollection('programs').find(p => p._id === req.params.id);
+    const program = await Program.findById(req.params.id);
     if (!program) {
       return res.status(404).json({ message: 'Program not found' });
     }

@@ -1,22 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const { getCollection, saveCollection, generateId } = require('../utils/db');
+const Service = require('../models/Service');
 
 // Get all services
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const services = getCollection('services').filter(s => s.isActive !== false);
-    res.json(services.reverse());
+    const services = await Service.find({ isActive: { $ne: false } }).sort({ createdAt: -1 });
+    res.json(services);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Get all services (admin) - must be before /:id
+router.get('/admin', async (req, res) => {
+  try {
+    const services = await Service.find().sort({ createdAt: -1 });
+    res.json(services);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 // Get single service
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const services = getCollection('services');
-    const service = services.find(s => s._id === req.params.id);
+    const service = await Service.findById(req.params.id);
     if (!service) return res.status(404).json({ message: 'Service not found' });
     res.json(service);
   } catch (error) {
@@ -24,23 +33,11 @@ router.get('/:id', (req, res) => {
   }
 });
 
-// Get all services (admin)
-router.get('/admin', (req, res) => {
-  try {
-    const services = getCollection('services');
-    res.json(services.reverse());
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
 // Create service
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const service = { ...req.body, _id: generateId(), createdAt: new Date().toISOString() };
-    const services = getCollection('services');
-    services.push(service);
-    saveCollection('services', services);
+    const service = new Service(req.body);
+    await service.save();
     res.status(201).json(service);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -48,25 +45,20 @@ router.post('/', (req, res) => {
 });
 
 // Update service
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
-    let services = getCollection('services');
-    const index = services.findIndex(s => s._id === req.params.id);
-    if (index === -1) return res.status(404).json({ message: 'Not found' });
-
-    services[index] = { ...services[index], ...req.body };
-    saveCollection('services', services);
-    res.json(services[index]);
+    const service = await Service.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!service) return res.status(404).json({ message: 'Not found' });
+    res.json(service);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
 // Delete service
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const services = getCollection('services').filter(s => s._id !== req.params.id);
-    saveCollection('services', services);
+    await Service.findByIdAndDelete(req.params.id);
     res.json({ message: 'Service deleted' });
   } catch (error) {
     res.status(500).json({ message: error.message });

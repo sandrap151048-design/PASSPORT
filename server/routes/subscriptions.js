@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getCollection, saveCollection, generateId } = require('../utils/db');
+const Subscription = require('../models/Subscription');
 
 // Create new subscription
 router.post('/', async (req, res) => {
@@ -11,24 +11,18 @@ router.post('/', async (req, res) => {
             return res.status(400).json({ message: 'Email is required' });
         }
 
-        const subscriptions = getCollection('subscriptions');
-
         // Check if already subscribed
-        const existing = subscriptions.find(s => s.email.toLowerCase() === email.toLowerCase());
+        const existing = await Subscription.findOne({ email: email.toLowerCase() });
         if (existing) {
             return res.status(400).json({ message: 'You are already subscribed!' });
         }
 
-        const newSubscription = {
-            _id: generateId(),
+        const newSubscription = new Subscription({
             email,
             interest: interest || 'General',
-            createdAt: new Date(),
-            status: 'pending' // or 'subscribed'
-        };
-
-        subscriptions.push(newSubscription);
-        saveCollection('subscriptions', subscriptions);
+            status: 'pending'
+        });
+        await newSubscription.save();
 
         res.status(201).json({
             message: 'Subscribed successfully! We will keep you updated.',
@@ -43,8 +37,8 @@ router.post('/', async (req, res) => {
 // Get all subscriptions (admin only)
 router.get('/', async (req, res) => {
     try {
-        const subscriptions = getCollection('subscriptions');
-        res.json(subscriptions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+        const subscriptions = await Subscription.find().sort({ createdAt: -1 });
+        res.json(subscriptions);
     } catch (error) {
         console.error('Fetch subscriptions error:', error);
         res.status(500).json({ message: 'Error fetching subscriptions', error: error.message });

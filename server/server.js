@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
@@ -18,7 +19,33 @@ app.options('*', cors(corsOptions)); // Handle preflight for all routes
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Local File Database setup is handled within routes using ../utils/db.js
+// MongoDB Connection with caching for serverless
+let cached = global.mongoose;
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+async function connectDB() {
+  if (cached.conn) return cached.conn;
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(process.env.MONGODB_URI, {
+      bufferCommands: false,
+    }).then((mongoose) => mongoose);
+  }
+  cached.conn = await cached.promise;
+  return cached.conn;
+}
+
+// Connect to MongoDB before handling requests
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    res.status(500).json({ message: 'Database connection error' });
+  }
+});
 
 // Routes
 app.use('/api/consultations', require('./routes/consultations'));

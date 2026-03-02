@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { getCollection, saveCollection, generateId } = require('../utils/db');
+const Partner = require('../models/Partner');
 
 // Submit partner enquiry
 router.post('/', async (req, res) => {
     try {
-        const partner = { ...req.body, _id: generateId(), createdAt: new Date() };
-        const partners = getCollection('partners');
-        partners.push(partner);
-        saveCollection('partners', partners);
+        const partner = new Partner(req.body);
+        await partner.save();
         res.status(201).json({ message: 'Partner enquiry sent successfully', data: partner });
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -18,8 +16,8 @@ router.post('/', async (req, res) => {
 // Get all partners (admin)
 router.get('/', async (req, res) => {
     try {
-        const partners = getCollection('partners');
-        res.json(partners.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+        const partners = await Partner.find().sort({ createdAt: -1 });
+        res.json(partners);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

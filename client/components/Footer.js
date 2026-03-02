@@ -15,11 +15,11 @@ export default function Footer() {
     setLoading(true);
     try {
       await api.post('/partners', partnerData);
-      setStatus({ type: 'success', message: 'Partner enquiry sent!' });
       setPartnerModalOpen(false);
       setPartnerData({ name: '', email: '', phone: '', company: '' });
+      alert('Partner enquiry sent successfully!');
     } catch (err) {
-      setStatus({ type: 'error', message: 'Error sending enquiry.' });
+      alert('Error sending enquiry. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -219,12 +219,14 @@ export default function Footer() {
             <p className="text-[11px] font-bold text-neutral-500 uppercase tracking-widest leading-none">
               &copy; 2024 WORLD PASSPORT. ALL RIGHTS RESERVED.
             </p>
-            <div className="flex gap-10 text-[11px] font-bold tracking-widest text-neutral-500 uppercase">
-              <Link href="/contact" className="hover:text-primary transition-colors">Privacy Policy</Link>
-              <Link href="/contact" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <div className="flex flex-col md:flex-row gap-6 items-center text-[12px] font-bold tracking-widest text-neutral-400 uppercase">
+              <div className="flex gap-10">
+                <Link href="/contact" className="hover:text-primary transition-colors">Privacy Policy</Link>
+                <Link href="/contact" className="hover:text-primary transition-colors">Terms of Service</Link>
+              </div>
               <button
                 onClick={() => setPartnerModalOpen(true)}
-                className="px-6 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-all font-black text-[9px] uppercase tracking-widest"
+                className="px-8 py-4 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all font-black text-[11px] uppercase tracking-widest shadow-xl shadow-red-900/20 hover:-translate-y-0.5"
               >
                 Become a Partner
               </button>

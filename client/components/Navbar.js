@@ -161,6 +161,7 @@ export default function Navbar() {
         {isOpen && (
           <div className="lg:hidden absolute top-full left-0 w-full h-[calc(100vh-80px)] overflow-y-auto bg-white border-t border-neutral-100 p-8 shadow-2xl z-50 animate-fade-in-up">
             <div className="flex flex-col gap-6">
+              {/* Mobile Services Dropdown */}
               {[
                 { name: 'Home', path: '/' },
                 { name: 'Programs', path: '/programs' },
@@ -175,10 +176,42 @@ export default function Navbar() {
                     <Link href={item.path} className="text-sm font-bold uppercase tracking-widest text-neutral-600 hover:text-brand-blue transition-colors" onClick={() => !item.hasDropdown && setIsOpen(false)}>
                       {item.name}
                     </Link>
+                    {item.hasDropdown && item.name === 'Services' && services.length > 0 && (
+                      <button
+                        onClick={() => setStudyDropdown(!studyDropdown)}
+                        className="p-2 text-neutral-400 hover:text-brand-blue transition-colors"
+                      >
+                        <svg className={`w-5 h-5 transition-transform duration-300 ${studyDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                      </button>
+                    )}
                   </div>
+                  {item.hasDropdown && item.name === 'Services' && studyDropdown && services.length > 0 && (
+                    <div className="flex flex-col gap-4 mt-4 ml-4 pl-4 border-l-2 border-neutral-100 animate-slide-up-fade">
+                      {services.slice(0, 5).map((service) => (
+                        <Link
+                          key={service._id}
+                          href={`/services/${service._id}`}
+                          className="text-xs font-bold text-neutral-500 hover:text-brand-blue transition-colors uppercase tracking-widest"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {service.title}
+                        </Link>
+                      ))}
+                      <Link
+                        href="/services"
+                        className="text-xs font-black text-brand-orange uppercase tracking-widest"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        View All Services
+                      </Link>
+                    </div>
+                  )}
                 </div>
               ))}
-              <button onClick={() => { setIsOpen(false); setPartnerModalOpen(true); }} className="w-full bg-brand-blue text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-xl shadow-brand-blue/20 hover:bg-brand-blue-dark transition-colors">
+              <button
+                onClick={() => { setIsOpen(false); setPartnerModalOpen(true); }}
+                className="w-full bg-brand-blue text-white py-5 rounded-2xl text-sm font-black uppercase tracking-widest shadow-xl shadow-brand-blue/30 hover:bg-brand-blue-dark transition-all active:scale-95 mt-4"
+              >
                 Become a Partner
               </button>
             </div>

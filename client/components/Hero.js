@@ -73,7 +73,7 @@ export default function Hero() {
             <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg text-xs font-bold tracking-[0.3em] uppercase mb-6 animate-fade-in">
               {slides[current].tag}
             </div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight mb-8 animate-fade-in-up key={current}">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight mb-8 animate-fade-in-up" key={current}>
               {slides[current].title.split(' ').map((word, i) => (
                 ['education', 'careers', 'destination', 'elite', 'global', 'abroad', 'immigration', 'visa'].includes(word.toLowerCase().replace(/[^a-z]/g, '')) ?
                   <span key={i} className="text-brand-orange"> {word}</span> : ` ${word}`

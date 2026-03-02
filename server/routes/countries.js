@@ -1,34 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const { getCollection, saveCollection, generateId } = require('../utils/db');
+const Country = require('../models/Country');
 
 // Get all countries
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const countries = getCollection('countries').filter(c => c.isActive !== false);
-    res.json(countries.reverse());
+    const countries = await Country.find({ isActive: { $ne: false } }).sort({ createdAt: -1 });
+    res.json(countries);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-// Get all countries (admin)
-router.get('/admin', (req, res) => {
+// Get all countries (admin) - must be before /:id
+router.get('/admin', async (req, res) => {
   try {
-    const countries = getCollection('countries');
-    res.json(countries.reverse());
+    const countries = await Country.find().sort({ createdAt: -1 });
+    res.json(countries);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 // Create country
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const country = { ...req.body, _id: generateId(), createdAt: new Date().toISOString() };
-    const countries = getCollection('countries');
-    countries.push(country);
-    saveCollection('countries', countries);
+    const country = new Country(req.body);
+    await country.save();
     res.status(201).json(country);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -36,25 +34,20 @@ router.post('/', (req, res) => {
 });
 
 // Update country
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
-    let countries = getCollection('countries');
-    const index = countries.findIndex(c => c._id === req.params.id);
-    if (index === -1) return res.status(404).json({ message: 'Not found' });
-
-    countries[index] = { ...countries[index], ...req.body };
-    saveCollection('countries', countries);
-    res.json(countries[index]);
+    const country = await Country.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!country) return res.status(404).json({ message: 'Not found' });
+    res.json(country);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
 // Delete country
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const countries = getCollection('countries').filter(c => c._id !== req.params.id);
-    saveCollection('countries', countries);
+    await Country.findByIdAndDelete(req.params.id);
     res.json({ message: 'Country deleted' });
   } catch (error) {
     res.status(500).json({ message: error.message });

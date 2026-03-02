@@ -1,33 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const { getCollection, saveCollection, generateId } = require('../utils/db');
+const User = require('../models/User');
 
 // Register new user
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password, role, phone, organization } = req.body;
-    const users = getCollection('users');
 
     // Check if user already exists
-    const existingUser = users.find(u => u.email === email);
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
 
     // Create new user (in production, hash the password with bcrypt)
-    const newUser = {
-      _id: generateId(),
+    const newUser = new User({
       name,
       email,
       password, // In production, use: await bcrypt.hash(password, 10)
       role: role || 'user',
       phone,
-      organization,
-      createdAt: new Date()
-    };
-
-    users.push(newUser);
-    saveCollection('users', users);
+      organization
+    });
+    await newUser.save();
 
     res.status(201).json({
       message: 'User registered successfully',
@@ -78,15 +73,11 @@ router.post('/login', async (req, res) => {
 // Get user profile
 router.get('/profile/:userId', async (req, res) => {
   try {
-    const users = getCollection('users');
-    const user = users.find(u => u._id === req.params.userId);
-
+    const user = await User.findById(req.params.userId).select('-password');
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
-    const { password, ...userWithoutPassword } = user;
-    res.json(userWithoutPassword);
+    res.json(user);
   } catch (error) {
     console.error('Profile error:', error);
     res.status(500).json({ message: 'Error fetching profile', error: error.message });
@@ -96,9 +87,8 @@ router.get('/profile/:userId', async (req, res) => {
 // Get all users (admin only)
 router.get('/users', async (req, res) => {
   try {
-    const users = getCollection('users');
-    const safeUsers = users.map(({ password, ...rest }) => rest);
-    res.json(safeUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+    const users = await User.find().select('-password').sort({ createdAt: -1 });
+    res.json(users);
   } catch (error) {
     console.error('Fetch users error:', error);
     res.status(500).json({ message: 'Error fetching users', error: error.message });

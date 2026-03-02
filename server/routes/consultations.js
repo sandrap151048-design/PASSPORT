@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getCollection, saveCollection, generateId } = require('../utils/db');
+const Consultation = require('../models/Consultation');
 
 router.post('/', async (req, res) => {
   try {
-    const consultation = { ...req.body, _id: generateId(), createdAt: new Date() };
-    const consultations = getCollection('consultations');
-    consultations.push(consultation);
-    saveCollection('consultations', consultations);
+    const consultation = new Consultation(req.body);
+    await consultation.save();
     res.status(201).json({ message: 'Consultation request submitted', data: consultation });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -16,8 +14,8 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const consultations = getCollection('consultations');
-    res.json(consultations.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+    const consultations = await Consultation.find().sort({ createdAt: -1 });
+    res.json(consultations);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

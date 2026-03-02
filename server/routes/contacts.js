@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getCollection, saveCollection, generateId } = require('../utils/db');
+const Contact = require('../models/Contact');
 
 router.post('/', async (req, res) => {
   try {
-    const contact = { ...req.body, _id: generateId(), createdAt: new Date() };
-    const contacts = getCollection('contacts');
-    contacts.push(contact);
-    saveCollection('contacts', contacts);
+    const contact = new Contact(req.body);
+    await contact.save();
     res.status(201).json({ message: 'Contact message sent', data: contact });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -17,8 +15,8 @@ router.post('/', async (req, res) => {
 // Get all contacts (admin)
 router.get('/', async (req, res) => {
   try {
-    const contacts = getCollection('contacts');
-    res.json(contacts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+    res.json(contacts);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
