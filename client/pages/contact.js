@@ -36,15 +36,19 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setStatus('loading')
+    setStatus({ type: 'loading', message: 'Sending...' })
     try {
       await api.post('/contacts', formData)
-      setStatus('success')
+      setStatus({ type: 'success', message: 'Transmission Successful' })
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-      setTimeout(() => setStatus(''), 4000)
+      setTimeout(() => setStatus(null), 4000)
     } catch (error) {
-      setStatus('error')
-      setTimeout(() => setStatus(''), 4000)
+      console.error('Contact submission error:', error);
+      const errorMsg = error.response && error.response.data && error.response.data.message
+        ? error.response.data.message
+        : 'Error sending message. Please try again.';
+      setStatus({ type: 'error', message: typeof errorMsg === 'object' ? JSON.stringify(errorMsg) : String(errorMsg) });
+      setTimeout(() => setStatus(null), 4000)
     }
   }
 
@@ -236,16 +240,16 @@ export default function Contact() {
 
                     <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-4">
                       <div className="order-2 md:order-1 text-center md:text-left">
-                        {status === 'success' && (
+                        {status?.type === 'success' && (
                           <p className="text-emerald-600 font-bold text-[10px] uppercase tracking-widest flex items-center gap-2">
                             <span className="w-2 h-2 bg-emerald-600 rounded-full animate-pulse"></span>
-                            Transmission Successful
+                            {status.message || 'Transmission Successful'}
                           </p>
                         )}
-                        {status === 'error' && (
+                        {status?.type === 'error' && (
                           <p className="text-red-600 font-bold text-[10px] uppercase tracking-widest flex items-center gap-2">
                             <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                            Transmission Failed
+                            {status.message || 'Transmission Failed'}
                           </p>
                         )}
                       </div>

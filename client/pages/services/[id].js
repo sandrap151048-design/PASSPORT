@@ -13,19 +13,139 @@ export default function ServiceDetail() {
     const [allServices, setAllServices] = useState([])
     const [loading, setLoading] = useState(true)
 
+    const fallbackServices = {
+        's1': {
+            _id: 's1',
+            title: 'Overseas Education',
+            description: 'Comprehensive academic pathway planning for elite global universities.',
+            imageUrl: '/images/service-study-abroad.jpg',
+            features: [
+                'University Selection & Course Mapping',
+                'Application Strategy & SOP Writing',
+                'Interview Preparation & Mock Sessions',
+                'Admission Guidance & Offer Management'
+            ]
+        },
+        's2': {
+            _id: 's2',
+            title: 'Scholarships & Grants',
+            description: 'Unlocking financial aid and merit-based grants for ambitious international students.',
+            imageUrl: '/images/service-scholarship.jpg',
+            features: [
+                'Merit-based Scholarship Identification',
+                'Grant Application Assistance',
+                'Financial Statement Verification',
+                'Full-funding Strategy Development'
+            ]
+        },
+        's3': {
+            _id: 's3',
+            title: 'IELTS/OET Prep',
+            description: 'Expert-led language proficiency training for academic and medical professionals.',
+            imageUrl: '/images/service-test-prep.jpg',
+            features: [
+                'Intensive Writing & Speaking Modules',
+                'Weekly Mock Examinations',
+                'One-on-One Feedback Sessions',
+                'Exam Registration Support'
+            ]
+        },
+        's4': {
+            _id: 's4',
+            title: 'Global Flight Booking',
+            description: 'Exclusive student airfares and travel logistics for international relocation.',
+            imageUrl: '/images/service-flight-booking.png',
+            features: [
+                'Discounted Student & Group Airfares',
+                'Flexible Date & Route Management',
+                'Extra Baggage Allowance Coordination',
+                'Airport Pickup & Arrival Logistics'
+            ]
+        },
+        's5': {
+            _id: 's5',
+            title: 'Luxury Hotel Stay',
+            description: 'Verified accommodation solutions for short-term stays and luxury travel.',
+            imageUrl: '/images/service-hotel-booking.png',
+            features: [
+                'Curated Hotel & Resort Bookings',
+                'Student Housing Pre-arrival Support',
+                'Verified Corporate Stay Accounts',
+                '24/7 Concierge Support'
+            ]
+        },
+        's6': {
+            _id: 's6',
+            title: 'Customized Holiday Tours',
+            description: 'Curated global travel experiences and post-graduation celebration tours.',
+            imageUrl: '/images/service-tour-booking.png',
+            features: [
+                'Bespoke Itinerary Planning',
+                'Guided Cultural Immersion Tours',
+                'Safe Group Travel Management',
+                'Exclusive Destination Packages'
+            ]
+        },
+        's7': {
+            _id: 's7',
+            title: 'Visa Assistance',
+            description: '98%+ success rate in processing global study, work, and travel permits.',
+            imageUrl: '/images/service-visa-assistance.png',
+            features: [
+                'Precision Document Verification',
+                'Embassy Interview Coaching',
+                'Visa Application Filing & Tracking',
+                'Compliance & Regulation Analysis'
+            ]
+        },
+        's8': {
+            _id: 's8',
+            title: 'Work Permit Solutions',
+            description: 'Expert legal support for international careers, internships, and work authorizations.',
+            imageUrl: '/images/service-visa-assistance.png',
+            features: [
+                'Post-Study Work Visa Management',
+                'Sponsorship Compliance Audit',
+                'Employer Representation Support',
+                'Work Rights Documentation'
+            ]
+        },
+        's9': {
+            _id: 's9',
+            title: 'PR & Citizenship',
+            description: 'Long-term migration strategy and permanent residency advisory for global citizens.',
+            imageUrl: '/images/service-migration.jpg',
+            features: [
+                'Point-test Evaluation & Score Optimization',
+                'Residency Pathway Counseling',
+                'Family Reunion Visa Guidance',
+                'Citizenship Law Compliance'
+            ]
+        }
+    };
+
     useEffect(() => {
         if (!id) return
 
         const fetchData = async () => {
             try {
                 const [serviceRes, allRes] = await Promise.all([
-                    api.get(`/services/${id}`),
-                    api.get('/services')
+                    api.get(`/services/${id}`).catch(() => ({ data: null })),
+                    api.get('/services').catch(() => ({ data: [] }))
                 ])
-                setService(serviceRes.data)
-                setAllServices(allRes.data)
+
+                const mainData = serviceRes?.data || fallbackServices[id];
+                setService(mainData)
+
+                const allData = Array.isArray(allRes?.data) ? allRes.data : [];
+                // If API is empty, use our hardcoded ecosystem for navigation
+                setAllServices(allData.length > 0 ? allData : Object.values(fallbackServices))
             } catch (err) {
                 console.error('Error fetching service:', err)
+                if (fallbackServices[id]) {
+                    setService(fallbackServices[id]);
+                    setAllServices(Object.values(fallbackServices));
+                }
             } finally {
                 setLoading(false)
             }
@@ -46,8 +166,9 @@ export default function ServiceDetail() {
             <div className="min-h-screen bg-white">
                 <Navbar />
                 <div className="container mx-auto px-4 py-32 text-center">
-                    <h1 className="text-4xl font-black mb-4">SERVICE NOT FOUND</h1>
-                    <Link href="/services" className="text-brand-blue font-bold uppercase tracking-widest text-xs underline">Back to Services</Link>
+                    <h1 className="text-4xl font-black mb-4 uppercase tracking-tighter">SERVICE COMPONENT NOT FOUND</h1>
+                    <p className="text-neutral-500 mb-8 max-w-md mx-auto normal-case">The requested module ID ({id}) could not be resolved in the current ecosystem.</p>
+                    <Link href="/services" className="inline-block px-8 py-4 bg-brand-blue text-white rounded-xl font-bold uppercase tracking-widest text-[10px] hover:shadow-2xl transition-all">Back to Ecosystem</Link>
                 </div>
                 <Footer />
             </div>

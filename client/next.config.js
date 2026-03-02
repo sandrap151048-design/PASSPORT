@@ -4,6 +4,16 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com'],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: process.env.API_SERVER_URL
+          ? `${process.env.API_SERVER_URL}/api/:path*`
+          : 'http://localhost:5000/api/:path*',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig

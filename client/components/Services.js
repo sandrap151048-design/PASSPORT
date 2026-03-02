@@ -20,11 +20,12 @@ export default function Services() {
       } catch (error) {
         console.error('Error fetching services, using fallback data:', error)
         setServices([
-          { id: 'ser_1', title: 'Overseas Education', description: 'Comprehensive guidance for students to choose the best universities and courses globally.', image: '/images/service-overseas-education.png' },
-          { id: 'ser_2', title: 'Visa Assistance', description: 'Expert help in processing all types of visas for travel, study, and work.', image: '/images/service-visa-assistance.png' },
-          { id: 'ser_3', title: 'Flight Booking', description: 'Affordable flight booking services for students and travelers worldwide.', image: '/images/service-flight-booking.png' },
-          { id: 'ser_4', title: 'Hotel Booking', description: 'Secure and comfortable accommodation bookings globally.', image: '/images/service-hotel-booking.png' },
-          { id: 'ser_5', title: 'Tour Booking', description: 'Customized tour packages and vacation planning for global destinations.', image: '/images/service-tour-booking.png' }
+          { id: 'ser_1', title: 'Academic Consulting', description: 'Expert guidance for university selection, course alignment, and global application management.', image: '/images/service-study-abroad.jpg' },
+          { id: 'ser_2', title: 'Immigration & Visa', description: '98%+ success rate in processing study, work, and residence permits across 19 destinations.', image: '/images/service-visa-assistance.png' },
+          { id: 'ser_3', title: 'Global Logistics', description: 'Hassle-free flight bookings, airport transfers, and luggage solutions for international relocation.', image: '/images/service-flight-booking.png' },
+          { id: 'ser_4', title: 'Premium Stays', description: 'Curated student housing and luxury short-stay bookings near top university hubs.', image: '/images/service-hotel-booking.png' },
+          { id: 'ser_5', title: 'Lifestyle & Tours', description: 'Curated travel packages and local orientation tours to help you settle into your new home.', image: '/images/service-tour-booking.png' },
+          { id: 'ser_6', title: 'Scholarship Support', description: 'Connecting ambitious students with exclusive financial grants and funding opportunities.', image: '/images/service-scholarship.jpg' }
         ])
       } finally {
         setLoading(false)
@@ -76,10 +77,10 @@ export default function Services() {
 
               <div className="relative z-10 flex flex-col flex-grow">
                 <h3 className="text-xl font-black text-neutral-900 mb-4 tracking-tight">
-                  {service.title}
+                  {typeof service.title === 'object' ? (service.title.name || service.title.text || 'Service') : String(service.title)}
                 </h3>
                 <p className="text-neutral-500 text-sm font-medium leading-relaxed mb-8 normal-case flex-grow">
-                  {service.description}
+                  {typeof service.description === 'object' ? (service.description.text || service.description.content || '') : String(service.description)}
                 </p>
 
                 {/* Bottom Action */}

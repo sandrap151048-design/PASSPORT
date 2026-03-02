@@ -8,6 +8,7 @@ import Services from '../components/Services'
 import Destinations from '../components/Destinations'
 import Testimonials from '../components/Testimonials'
 import ConsultationForm from '../components/ConsultationForm'
+import FamousUniversities from '../components/FamousUniversities'
 import Footer from '../components/Footer'
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <WhyChooseUs />
       <Stats />
       <Services />
+      <FamousUniversities />
       <Destinations />
       <Testimonials />
       <ConsultationForm />

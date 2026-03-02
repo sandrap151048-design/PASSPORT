@@ -201,16 +201,16 @@ export default function Programs() {
                       </div>
                     </div>
                     <h3 className="text-2xl font-black text-neutral-900 tracking-tight leading-tight mb-4 group-hover:text-primary transition-colors">
-                      {program.title}
+                      {typeof program.title === 'object' ? (program.title.name || program.title.text || 'Program Title') : String(program.title)}
                     </h3>
                     <div className="flex items-center gap-2 text-[10px] font-black text-neutral-400 uppercase tracking-[0.1em]">
                       <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                      {program.duration}
+                      {String(program.duration)}
                     </div>
                   </div>
 
                   <p className="text-sm font-medium text-neutral-500 leading-relaxed flex-grow normal-case">
-                    {program.description}
+                    {typeof program.description === 'object' ? (program.description.text || program.description.content || '') : String(program.description)}
                   </p>
 
                   <div className={`mt-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${expandedProgram === program.id ? 'max-h-[600px] opacity-100 mt-8' : 'max-h-0 opacity-0'}`}>
@@ -221,7 +221,7 @@ export default function Programs() {
                           {program.requirements.map((req, i) => (
                             <li key={i} className="flex items-center gap-3">
                               <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                              {req}
+                              {typeof req === 'object' ? (req.name || req.title || 'Requirement') : req}
                             </li>
                           ))}
                         </ul>
@@ -229,11 +229,15 @@ export default function Programs() {
                       <div className="grid grid-cols-2 gap-6">
                         <div>
                           <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-900 mb-2">Primary Intakes</h4>
-                          <p className="text-sm font-bold text-neutral-600 normal-case">{program.intakes.join(', ')}</p>
+                          <p className="text-sm font-bold text-neutral-600 normal-case">
+                            {Array.isArray(program.intakes) ? program.intakes.join(', ') : String(program.intakes)}
+                          </p>
                         </div>
                         <div>
                           <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-900 mb-2">Pricing Range</h4>
-                          <p className="text-sm font-bold text-neutral-600 normal-case">{program.fee_range}</p>
+                          <p className="text-sm font-bold text-neutral-600 normal-case">
+                            {typeof program.fee_range === 'object' ? JSON.stringify(program.fee_range) : String(program.fee_range)}
+                          </p>
                         </div>
                       </div>
                       <Link href="/contact" className="block w-full py-5 rounded-2xl bg-neutral-900 text-white font-black text-center text-[10px] hover:bg-primary transition-all duration-500 uppercase tracking-[0.25em] shadow-xl hover:shadow-primary/30">

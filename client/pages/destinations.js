@@ -69,7 +69,7 @@ export default function Destinations() {
             {destinations.map((dest, i) => (
               <div
                 key={i}
-                className="group relative bg-neutral-50 border border-neutral-100 rounded-[2.5rem] overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-700 animate-slide-up-fade"
+                className="group relative bg-neutral-50 border border-neutral-100 rounded-[2.5rem] overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-700 animate-slide-up-fade flex flex-col"
                 style={{ animationDelay: `${i * 100}ms` }}
               >
                 <div className="h-64 relative overflow-hidden">
@@ -89,30 +89,35 @@ export default function Destinations() {
                   </div>
                 </div>
 
-                <div className="p-8 pb-10">
-                  <p className="text-sm text-neutral-500 font-light leading-relaxed mb-8 normal-case h-20 overflow-hidden line-clamp-3">
+                <div className="p-10 flex flex-col flex-grow text-left">
+                  <p className="text-neutral-500 text-[13px] font-medium leading-relaxed mb-8 normal-case opacity-90">
                     {dest.description}
                   </p>
 
                   {dest.highlights && dest.highlights.length > 0 && (
-                    <div className="mb-10">
+                    <div className="mb-10 space-y-4 flex-grow">
                       <ul className="space-y-4">
                         {dest.highlights.slice(0, 3).map((highlight, j) => (
-                          <li key={j} className="text-[11px] font-medium text-neutral-600 flex items-center gap-3 normal-case">
-                            <div className={`w-1.5 h-1.5 rounded-full ${j % 2 === 0 ? 'bg-brand-blue' : 'bg-brand-orange'}`}></div>
-                            {highlight}
+                          <li key={j} className="text-[11px] font-bold text-neutral-900 flex items-center gap-4 uppercase tracking-wider">
+                            <div className="w-1.5 h-1.5 rounded-full bg-brand-orange shrink-0"></div>
+                            {typeof highlight === 'object' ? (highlight.name || highlight.title || 'Highlight') : String(highlight)}
                           </li>
                         ))}
                       </ul>
                     </div>
                   )}
 
-                  <Link
-                    href={`/country/${dest.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="inline-block text-center w-full py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-[10px] transition-all duration-300 bg-brand-blue text-white border border-brand-blue hover:bg-brand-blue-dark shadow-xl hover:-translate-y-1"
-                  >
-                    Explore {dest.name}
-                  </Link>
+                  <div className="mt-auto pt-8 border-t border-neutral-100">
+                    <Link
+                      href={`/country/${dest.name.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="group/btn relative w-full flex items-center justify-between bg-neutral-900 text-white p-5 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] overflow-hidden transition-all hover:bg-brand-orange shadow-xl active:scale-95"
+                    >
+                      <span>EXPLORE {dest.name}</span>
+                      <svg className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}

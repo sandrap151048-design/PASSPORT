@@ -53,19 +53,51 @@ export default function Navbar() {
     api.get('/countries')
       .then(res => {
         const data = res.data;
-        if (Array.isArray(data)) setCountries(data);
-        else if (data && Array.isArray(data.data)) setCountries(data.data);
+        if (Array.isArray(data) && data.length > 0) setCountries(data);
+        else if (data && Array.isArray(data.data) && data.data.length > 0) setCountries(data.data);
+        else setCountries([{ _id: 'c1', name: 'United Kingdom' }, { _id: 'c2', name: 'United States' }, { _id: 'c3', name: 'Canada' }, { _id: 'c4', name: 'Australia' }, { _id: 'c5', name: 'Germany' }]);
       })
-      .catch(err => console.error('Error fetching countries:', err));
-    // Fetch services for dropdown
+      .catch(err => {
+        console.error('Error fetching countries:', err);
+        setCountries([{ _id: 'c1', name: 'United Kingdom' }, { _id: 'c2', name: 'United States' }, { _id: 'c3', name: 'Canada' }, { _id: 'c4', name: 'Australia' }, { _id: 'c5', name: 'Germany' }]);
+      });
+
+    // Default services fallback - Categorized
+    const worldPassportEcosystem = [
+      { _id: 's1', title: 'Overseas Education', category: 'Academic' },
+      { _id: 's2', title: 'Scholarships & Grants', category: 'Academic' },
+      { _id: 's3', title: 'IELTS/OET Prep', category: 'Academic' },
+      { _id: 's4', title: 'Global Flight Booking', category: 'Logistics' },
+      { _id: 's5', title: 'Luxury Hotel Stay', category: 'Logistics' },
+      { _id: 's6', title: 'Customized Holiday Tours', category: 'Logistics' },
+      { _id: 's7', title: 'Visa Assistance', category: 'Migration' },
+      { _id: 's8', title: 'Work Permit Solutions', category: 'Migration' },
+      { _id: 's9', title: 'PR & Citizenship', category: 'Migration' }
+    ];
+
+    // Fetch services
     api.get('/services')
       .then(res => {
-        const data = res.data;
-        if (Array.isArray(data)) setServices(data);
-        else if (data && Array.isArray(data.data)) setServices(data.data);
+        const data = Array.isArray(res.data) ? res.data : (res.data?.data || []);
+        if (data.length > 0) {
+          // Merge API data with Ecosystem defaults to ensure full "World Passport" range
+          const combined = [...data];
+          worldPassportEcosystem.forEach(eco => {
+            if (!combined.some(s => s.title.toLowerCase().includes(eco.title.toLowerCase().split(' ')[0]))) {
+              combined.push(eco);
+            }
+          });
+          setServices(combined);
+        } else {
+          setServices(worldPassportEcosystem);
+        }
       })
-      .catch(err => console.error('Error fetching services:', err));
+      .catch(err => {
+        console.error('Error fetching services:', err);
+        setServices(worldPassportEcosystem);
+      });
   }, [])
+
 
   return (
     <>
@@ -103,32 +135,82 @@ export default function Navbar() {
                     <span className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 h-0.5 bg-brand-orange transition-all duration-300 ${isActive(link.path) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                   </Link>
 
-                  {link.hasDropdown && link.name === 'Services' && services.length > 0 && (
-                    <div className="absolute top-full left-0 mt-4 w-64 bg-white rounded-2xl shadow-2xl overflow-hidden opacity-0 invisible translate-y-2 group-hover/nav:opacity-100 group-hover/nav:visible group-hover/nav:translate-y-0 transition-all duration-300 border border-neutral-100">
-                      <div className="p-4 bg-neutral-50 border-b border-neutral-100 flex items-center justify-between">
-                        <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400">Recent Services</span>
-                        <div className="flex gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
+                  {link.hasDropdown && link.name === 'Services' && (services.length > 0 || countries.length > 0) && (
+                    <div className="absolute top-full left-0 mt-4 w-[750px] bg-white rounded-3xl shadow-2xl overflow-hidden opacity-0 invisible translate-y-2 group-hover/nav:opacity-100 group-hover/nav:visible group-hover/nav:translate-y-0 transition-all duration-300 border border-neutral-100 flex">
+                      {/* Column 1: Academic & Education */}
+                      <div className="flex-1 border-r border-neutral-100">
+                        <div className="p-5 bg-neutral-50/50 border-b border-neutral-100">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-brand-blue block">Academic Excellence</span>
+                          <span className="text-[8px] text-neutral-400 font-bold uppercase tracking-widest">Global Study Modules</span>
+                        </div>
+                        <div className="py-4">
+                          {services.filter(s => s.category === 'Academic' || (!s.category && (s.title.toLowerCase().includes('study') || s.title.toLowerCase().includes('education') || s.title.toLowerCase().includes('scholar')))).slice(0, 6).map((service, idx) => (
+                            <Link
+                              key={service._id}
+                              href={`/services/${service._id}`}
+                              className="flex items-center gap-3 px-6 py-3 hover:bg-neutral-50 text-neutral-600 hover:text-brand-blue transition-colors group/item"
+                            >
+                              <span className="text-[10px] font-bold uppercase tracking-wider">
+                                {typeof service.title === 'object' ? (service.title.name || service.title.text || 'Service') : String(service.title)}
+                              </span>
+                            </Link>
+                          ))}
+                          {services.filter(s => s.category === 'Academic' || (!s.category && (s.title.toLowerCase().includes('study') || s.title.toLowerCase().includes('education') || s.title.toLowerCase().includes('scholar')))).length === 0 && (
+                            <div className="px-6 py-2 text-[10px] text-neutral-400 font-bold italic uppercase">Modules loading...</div>
+                          )}
                         </div>
                       </div>
-                      <div className="py-2">
-                        {services.slice(0, 5).map((service, idx) => (
-                          <Link
-                            key={service._id}
-                            href={`/services/${service._id}`}
-                            className="flex items-center gap-3 px-6 py-3 hover:bg-neutral-50 text-neutral-600 hover:text-brand-blue transition-colors group/item"
-                          >
-                            <span className="text-[10px] font-bold uppercase tracking-wider">{service.title}</span>
-                            <svg className="w-3 h-3 opacity-0 group-hover/item:opacity-100 -translate-x-2 group-hover/item:translate-x-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"></path></svg>
+
+                      {/* Column 2: Migration & Logistics */}
+                      <div className="flex-1 border-r border-neutral-100 bg-neutral-50/20">
+                        <div className="p-5 bg-emerald-50/30 border-b border-neutral-100">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600 block">Travel & Migration</span>
+                          <span className="text-[8px] text-neutral-400 font-bold uppercase tracking-widest">Logistics Ecosystem</span>
+                        </div>
+                        <div className="py-4">
+                          {[
+                            ...services.filter(s => s.category === 'Logistics' || s.category === 'Migration'),
+                            ...services.filter(s => !s.category && (s.title.toLowerCase().includes('flight') || s.title.toLowerCase().includes('visa') || s.title.toLowerCase().includes('hotel') || s.title.toLowerCase().includes('immigration')))
+                          ].slice(0, 8).map((service, idx) => (
+                            <Link
+                              key={service._id || idx}
+                              href={service._id ? `/services/${service._id}` : '/services'}
+                              className="flex items-center gap-3 px-6 py-3 hover:bg-white text-neutral-600 hover:text-brand-blue transition-colors group/item"
+                            >
+                              <span className="text-[10px] font-bold uppercase tracking-wider">
+                                {typeof service.title === 'object' ? (service.title.name || service.title.text || 'Service') : String(service.title)}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Column 3: Recent Destinations */}
+                      <div className="flex-1 bg-brand-blue/[0.02]">
+                        <div className="p-5 bg-brand-orange/[0.03] border-b border-neutral-100">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-brand-orange">Recent Destinations</span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
+                          </div>
+                          <span className="text-[8px] text-neutral-400 font-bold uppercase tracking-widest block mt-1">Newly Added Junctions</span>
+                        </div>
+                        <div className="py-4">
+                          {countries.slice(0, 8).map((country, idx) => (
+                            <Link
+                              key={country._id}
+                              href={`/country/${country.name.toLowerCase().replace(/\s+/g, '-')}`}
+                              className="flex items-center gap-3 px-6 py-3 hover:bg-white text-neutral-600 hover:text-brand-blue transition-colors group/item"
+                            >
+                              <div className="w-1 h-1 rounded-full bg-neutral-200 group-hover:bg-brand-orange transition-colors" />
+                              <span className="text-[10px] font-bold uppercase tracking-wider">{country.name}</span>
+                              <svg className="w-3 h-3 opacity-0 group-hover/item:opacity-100 -translate-x-2 group-hover/item:translate-x-0 transition-all text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"></path></svg>
+                            </Link>
+                          ))}
+                          <div className="mx-6 my-4 border-t border-dotted border-neutral-200" />
+                          <Link href="/destinations" className="flex items-center justify-center px-6 py-4 mx-6 rounded-xl text-[9px] font-black text-white bg-brand-blue uppercase tracking-widest hover:bg-brand-blue-dark transition-all shadow-lg shadow-brand-blue/20">
+                            Explore Global Map
                           </Link>
-                        ))}
-                        <div className="mx-4 my-2 border-t border-dotted border-neutral-200" />
-                        <Link
-                          href="/services"
-                          className="flex items-center justify-center px-6 py-3 text-[9px] font-black text-brand-orange uppercase tracking-widest hover:bg-brand-orange hover:text-white transition-all"
-                        >
-                          View All Services
-                        </Link>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -185,24 +267,69 @@ export default function Navbar() {
                       </button>
                     )}
                   </div>
-                  {item.hasDropdown && item.name === 'Services' && studyDropdown && services.length > 0 && (
-                    <div className="flex flex-col gap-4 mt-4 ml-4 pl-4 border-l-2 border-neutral-100 animate-slide-up-fade">
-                      {services.slice(0, 5).map((service) => (
-                        <Link
-                          key={service._id}
-                          href={`/services/${service._id}`}
-                          className="text-xs font-bold text-neutral-500 hover:text-brand-blue transition-colors uppercase tracking-widest"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {service.title}
-                        </Link>
-                      ))}
+                  {item.hasDropdown && item.name === 'Services' && studyDropdown && (services.length > 0 || countries.length > 0) && (
+                    <div className="flex flex-col gap-6 mt-6 ml-4 pl-4 border-l-2 border-neutral-100 animate-slide-up-fade">
+                      {/* Academic Section */}
+                      <div>
+                        <span className="text-[10px] font-black text-brand-blue uppercase tracking-[0.2em] mb-3 block">Academic Excellence</span>
+                        <div className="flex flex-col gap-3">
+                          {services.filter(s => s.category === 'Academic' || (!s.category && (s.title.toLowerCase().includes('study') || s.title.toLowerCase().includes('education') || s.title.toLowerCase().includes('scholar')))).slice(0, 5).map((service) => (
+                            <Link
+                              key={service._id}
+                              href={`/services/${service._id}`}
+                              className="text-xs font-bold text-neutral-500 hover:text-brand-blue transition-colors uppercase tracking-widest"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {typeof service.title === 'object' ? (service.title.name || service.title.text || 'Service') : String(service.title)}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Migration Section */}
+                      <div>
+                        <span className="text-[10px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-3 block">Travel & Migration</span>
+                        <div className="flex flex-col gap-3">
+                          {[
+                            ...services.filter(s => s.category === 'Logistics' || s.category === 'Migration'),
+                            ...services.filter(s => !s.category && (s.title.toLowerCase().includes('flight') || s.title.toLowerCase().includes('visa') || s.title.toLowerCase().includes('hotel') || s.title.toLowerCase().includes('immigration')))
+                          ].slice(0, 5).map((service, idx) => (
+                            <Link
+                              key={service._id || idx}
+                              href={service._id ? `/services/${service._id}` : '/services'}
+                              className="text-xs font-bold text-neutral-500 hover:text-brand-blue transition-colors uppercase tracking-widest"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {typeof service.title === 'object' ? (service.title.name || service.title.text || 'Service') : String(service.title)}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Destinations Section */}
+                      <div>
+                        <span className="text-[10px] font-black text-brand-orange uppercase tracking-[0.2em] mb-3 block">Recent Destinations</span>
+                        <div className="flex flex-col gap-3">
+                          {countries.slice(0, 5).map((country) => (
+                            <Link
+                              key={country._id}
+                              href={`/country/${country.name.toLowerCase().replace(/\s+/g, '-')}`}
+                              className="text-xs font-bold text-neutral-500 hover:text-brand-blue transition-colors uppercase tracking-widest"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {country.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
                       <Link
                         href="/services"
-                        className="text-xs font-black text-brand-orange uppercase tracking-widest"
+                        className="mt-4 py-3 border-t border-neutral-100 text-xs font-black text-brand-blue uppercase tracking-widest flex items-center gap-2"
                         onClick={() => setIsOpen(false)}
                       >
-                        View All Services
+                        Explore Complete Ecosystem
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                       </Link>
                     </div>
                   )}

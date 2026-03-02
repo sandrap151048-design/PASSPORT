@@ -20,11 +20,13 @@ export default function ConsultationForm() {
     e.preventDefault()
     try {
       await api.post('/consultations', formData)
-      setStatus('success')
+      setStatus({ type: 'success', message: 'Transmission status: SUCCESS. We will connect soon.' })
       setFormData({ name: '', email: '', phone: '', service: '', message: '' })
       setTimeout(() => setStatus(''), 5000)
     } catch (error) {
-      setStatus('error')
+      console.error('Consultation error:', error);
+      const msg = error.response && error.response.data && error.response.data.message ? error.response.data.message : 'Signal error. Please retry the transmission.';
+      setStatus({ type: 'error', message: typeof msg === 'object' ? JSON.stringify(msg) : String(msg) });
       setTimeout(() => setStatus(''), 5000)
     }
   }
@@ -131,14 +133,14 @@ export default function ConsultationForm() {
                   Execute Consultation Request
                 </button>
 
-                {status === 'success' && (
+                {status && status.type === 'success' && (
                   <div className="bg-green-50 border border-green-300 text-green-600 px-6 py-4 rounded-2xl text-center">
                     Transmission status: SUCCESS. We will connect soon.
                   </div>
                 )}
-                {status === 'error' && (
+                {status && status.type === 'error' && (
                   <div className="bg-red-50 border border-red-300 text-red-500 px-6 py-4 rounded-2xl text-center">
-                    Signal error. Please retry the transmission.
+                    {status.message || 'Signal error. Please retry the transmission.'}
                   </div>
                 )}
               </form>

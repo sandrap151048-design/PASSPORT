@@ -247,7 +247,9 @@ export default function CountryDetail() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                             </svg>
                           </div>
-                          <p className="text-slate-700 font-bold uppercase tracking-tight text-sm leading-tight">{highlight}</p>
+                          <p className="text-slate-700 font-bold uppercase tracking-tight text-sm leading-tight">
+                            {typeof highlight === 'object' ? (highlight.name || highlight.title || 'Highlight') : highlight}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -272,7 +274,9 @@ export default function CountryDetail() {
                             <div className="w-10 h-10 bg-brand-orange text-white rounded-xl flex items-center justify-center font-black text-sm">
                               {index + 1}
                             </div>
-                            <p className="text-sm font-bold uppercase tracking-tight group-hover:text-brand-orange transition-colors">{university}</p>
+                            <p className="text-sm font-bold uppercase tracking-tight group-hover:text-brand-orange transition-colors">
+                              {typeof university === 'object' ? (university.name || university.title || 'University') : university}
+                            </p>
                           </div>
                         ))}
                       </div>
@@ -471,12 +475,16 @@ export default function CountryDetail() {
                         <div className="absolute top-0 right-0 w-40 h-40 bg-brand-orange/5 rounded-full -mr-20 -mt-20 group-hover:scale-150 transition-transform duration-1000"></div>
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
                           <div className="flex-1">
-                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase">{scholarship.name}</h3>
-                            <p className="text-slate-500 font-medium normal-case leading-relaxed">{scholarship.description}</p>
+                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase">
+                              {typeof scholarship.name === 'object' ? (scholarship.name.text || 'Scholarship') : String(scholarship.name)}
+                            </h3>
+                            <p className="text-slate-500 font-medium normal-case leading-relaxed">
+                              {typeof scholarship.description === 'object' ? (scholarship.description.text || '') : String(scholarship.description)}
+                            </p>
                           </div>
                           {scholarship.amount && (
                             <div className="px-10 py-5 bg-brand-orange text-white rounded-2xl font-black text-lg shadow-xl shadow-brand-orange/30 transform group-hover:scale-105 transition-transform">
-                              {scholarship.amount}
+                              {typeof scholarship.amount === 'object' ? (scholarship.amount.text || scholarship.amount.value || '') : String(scholarship.amount)}
                             </div>
                           )}
                         </div>
@@ -572,7 +580,9 @@ export default function CountryDetail() {
                             <div className="w-10 h-10 bg-brand-blue/10 text-brand-blue rounded-xl flex items-center justify-center font-black text-xs group-hover:bg-brand-blue group-hover:text-white transition-all">
                               0{index + 1}
                             </div>
-                            <span className="text-slate-900 font-bold uppercase tracking-tight">{type}</span>
+                            <span className="text-slate-900 font-bold uppercase tracking-tight">
+                              {typeof type === 'object' ? (type.name || type.title || 'Accommodation') : type}
+                            </span>
                           </div>
                         ))}
                       </div>

@@ -44,15 +44,25 @@ export default function Footer() {
         setStatus({ type: 'success', message: 'Successfully subscribed!' });
         setSubscribeData({ email: '', interest: "I'm Interested in" });
       } else {
-        setStatus({ type: 'error', message: res.data.message || 'Error subscribing.' });
+        const msg = res.data && res.data.message ? res.data.message : 'Error subscribing.';
+        setStatus({ type: 'error', message: typeof msg === 'object' ? JSON.stringify(msg) : String(msg) });
       }
     } catch (error) {
-      console.error('Submission error:', error);
-      setStatus({ type: 'error', message: error.response?.data?.message || 'An error occurred. Please try again later.' });
+      console.error('Subscription Submission error:', error);
+      let errorMsg = 'An error occurred. Please try again later.';
+
+      if (!error.response) {
+        errorMsg = 'COMMUNICATION ERROR: Backend unreachable. Please verify API configuration.';
+      } else if (error.response.data && error.response.data.message) {
+        errorMsg = error.response.data.message;
+      }
+
+      setStatus({ type: 'error', message: typeof errorMsg === 'object' ? JSON.stringify(errorMsg) : String(errorMsg) });
     } finally {
       setLoading(false);
     }
   };
+
 
   return (
     <footer className="bg-[#0a1025] text-white relative overflow-hidden">

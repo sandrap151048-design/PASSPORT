@@ -137,25 +137,7 @@ export default function Services() {
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400">Catalogue 2024</span>
             </div>
 
-            <div className="relative group/sort">
-              <button className="flex items-center gap-4 px-6 py-3 bg-neutral-50 border border-neutral-100 rounded-xl text-[9px] font-black tracking-widest uppercase hover:bg-white hover:border-brand-blue transition-all group-hover/sort:border-brand-blue">
-                <span>Sort by: <span className="text-brand-orange">Recent</span></span>
-                <svg className="w-4 h-4 text-neutral-400 group-hover/sort:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
 
-              <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-neutral-100 rounded-xl shadow-2xl opacity-0 invisible translate-y-2 group-hover/sort:opacity-100 group-hover/sort:visible group-hover/sort:translate-y-0 transition-all duration-300 z-20 overflow-hidden">
-                <button className="w-full text-left px-6 py-4 text-[9px] font-black uppercase tracking-widest text-brand-blue bg-neutral-50/50 flex items-center justify-between">
-                  Recent
-                  <div className="w-1.5 h-1.5 rounded-full bg-brand-orange"></div>
-                </button>
-                <button className="w-full text-left px-6 py-4 text-[9px] font-black uppercase tracking-widest text-neutral-400 hover:text-brand-blue hover:bg-neutral-50 transition-colors">
-                  Alphabetical
-                </button>
-                <button className="w-full text-left px-6 py-4 text-[9px] font-black uppercase tracking-widest text-neutral-400 hover:text-brand-blue hover:bg-neutral-50 transition-colors">
-                  Popular
-                </button>
-              </div>
-            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -201,7 +183,7 @@ export default function Services() {
                     {service.features.slice(0, 3).map((feature, i) => (
                       <li key={i} className="flex items-center gap-3 text-[11px] font-medium text-neutral-600 normal-case">
                         <svg className={`w-4 h-4 ${index % 2 === 0 ? 'text-blue-600' : 'text-emerald-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7"></path></svg>
-                        {feature}
+                        {typeof feature === 'object' ? (feature.name || feature.title || 'Feature') : String(feature)}
                       </li>
                     ))}
                   </ul>
