@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import api from '../utils/api'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -30,20 +31,14 @@ export default function Login() {
     setError('')
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password
-        })
+      const response = await api.post('/auth/login', {
+        email: formData.email,
+        password: formData.password
       })
 
-      const data = await response.json()
+      const data = response.data
 
-      if (response.ok) {
+      if (response.status === 200) {
         // Store user data in localStorage
         localStorage.setItem('user', JSON.stringify(data.user))
 
@@ -120,8 +115,8 @@ export default function Login() {
                 </span>
               </div>
             </Link>
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Partner Login</h1>
-            <p className="text-gray-600">Welcome back! Please login to your account</p>
+            <h1 className="text-3xl font-black text-gray-800 mb-2 uppercase tracking-tight">Login Portal</h1>
+            <p className="text-gray-600 font-medium">Access your global migration dashboard</p>
           </div>
 
           {/* Login Form */}
@@ -160,7 +155,7 @@ export default function Login() {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-400"
-                  placeholder="partner@example.com"
+                  placeholder="admin@worldpassport.in"
                   required
                 />
               </div>
@@ -287,7 +282,7 @@ export default function Login() {
           <p className="text-center text-sm text-gray-600 mt-8 animate-fade-in" style={{ animationDelay: '700ms' }}>
             Don't have an account?{' '}
             <Link href="/contact" className="text-blue-600 hover:text-blue-800 font-semibold transition">
-              Contact us to become a partner
+              Contact us for access
             </Link>
           </p>
 

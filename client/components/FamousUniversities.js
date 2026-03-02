@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import { motion } from 'framer-motion';
 
 export default function FamousUniversities() {
@@ -9,10 +9,18 @@ export default function FamousUniversities() {
     useEffect(() => {
         const fetchUniversities = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/universities');
+                const res = await api.get('/universities');
                 setUniversities(res.data);
             } catch (error) {
-                console.error('Error fetching universities:', error);
+                console.error('Error fetching universities, using fallback data:', error);
+                setUniversities([
+                    { name: 'Harvard University', logoUrl: '/images/1.png' },
+                    { name: 'Stanford University', logoUrl: '/images/2.png' },
+                    { name: 'MIT', logoUrl: '/images/3.png' },
+                    { name: 'University of Oxford', logoUrl: '/images/4.png' },
+                    { name: 'University of Cambridge', logoUrl: '/images/5.png' },
+                    { name: 'Imperial College London', logoUrl: '/images/6.png' }
+                ]);
             } finally {
                 setLoading(false);
             }

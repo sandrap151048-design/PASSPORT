@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import AdminLayout from '../../components/AdminLayout';
-import axios from 'axios';
+import api from '../../utils/api';
 
 export default function AdminUniversities() {
     const [universities, setUniversities] = useState([]);
@@ -20,7 +20,7 @@ export default function AdminUniversities() {
 
     const fetchUniversities = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/universities/admin');
+            const res = await api.get('/universities/admin');
             setUniversities(res.data);
         } catch (error) {
             console.error('Error fetching universities:', error);
@@ -32,10 +32,10 @@ export default function AdminUniversities() {
         e.preventDefault();
         try {
             if (editingId) {
-                await axios.put(`http://localhost:5000/api/universities/${editingId}`, formData);
+                await api.put(`/universities/${editingId}`, formData);
                 alert('University updated successfully!');
             } else {
-                await axios.post('http://localhost:5000/api/universities', formData);
+                await api.post('/universities', formData);
                 alert('University created successfully!');
             }
             fetchUniversities();
@@ -55,7 +55,7 @@ export default function AdminUniversities() {
     const handleDelete = async (id) => {
         if (confirm('Are you sure you want to delete this university?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/universities/${id}`);
+                await api.delete(`/universities/${id}`);
                 fetchUniversities();
             } catch (error) {
                 console.error('Error deleting university:', error);

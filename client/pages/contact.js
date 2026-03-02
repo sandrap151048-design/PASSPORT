@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import api from '../utils/api'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Image from 'next/image'
@@ -38,8 +38,7 @@ export default function Contact() {
     e.preventDefault()
     setStatus('loading')
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
-      await axios.post(`${API_URL}/contacts`, formData)
+      await api.post('/contacts', formData)
       setStatus('success')
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
       setTimeout(() => setStatus(''), 4000)

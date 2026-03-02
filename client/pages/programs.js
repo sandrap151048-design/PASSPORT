@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import api from '../utils/api'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Image from 'next/image'
@@ -82,8 +83,8 @@ export default function Programs() {
 
     const fetchPrograms = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/programs')
-        const data = await response.json()
+        const response = await api.get('/programs')
+        const data = response.data
         if (data && data.length > 0) {
           // Map backend properties to frontend generic structures
           const formatted = data.map((p, i) => ({

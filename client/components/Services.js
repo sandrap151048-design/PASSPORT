@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import axios from 'axios'
+import Link from 'next/link'
+import api from '../utils/api'
 
 export default function Services() {
   const [services, setServices] = useState([])
@@ -9,10 +10,22 @@ export default function Services() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/services')
-        setServices(res.data)
+        const res = await api.get('/services')
+        const formatted = res.data.map(s => ({
+          ...s,
+          id: s._id,
+          image: s.imageUrl || '/images/service-study-abroad.jpg'
+        }))
+        setServices(formatted)
       } catch (error) {
-        console.error('Error fetching services:', error)
+        console.error('Error fetching services, using fallback data:', error)
+        setServices([
+          { id: 'ser_1', title: 'Overseas Education', description: 'Comprehensive guidance for students to choose the best universities and courses globally.', image: '/images/service-overseas-education.png' },
+          { id: 'ser_2', title: 'Visa Assistance', description: 'Expert help in processing all types of visas for travel, study, and work.', image: '/images/service-visa-assistance.png' },
+          { id: 'ser_3', title: 'Flight Booking', description: 'Affordable flight booking services for students and travelers worldwide.', image: '/images/service-flight-booking.png' },
+          { id: 'ser_4', title: 'Hotel Booking', description: 'Secure and comfortable accommodation bookings globally.', image: '/images/service-hotel-booking.png' },
+          { id: 'ser_5', title: 'Tour Booking', description: 'Customized tour packages and vacation planning for global destinations.', image: '/images/service-tour-booking.png' }
+        ])
       } finally {
         setLoading(false)
       }
@@ -43,7 +56,7 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
-              key={index}
+              key={service.id || index}
               className="group relative bg-neutral-50 p-8 rounded-3xl border border-neutral-100 hover:border-primary/20 hover:bg-white hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 animate-slide-up-fade flex flex-col h-full overflow-hidden"
               style={{ animationDelay: `${index * 100}ms` }}
             >
@@ -70,12 +83,15 @@ export default function Services() {
                 </p>
 
                 {/* Bottom Action */}
-                <div className="flex items-center gap-3 text-primary text-[10px] font-black tracking-widest group-hover:gap-5 transition-all">
+                <Link
+                  href={`/services#${service.id}`}
+                  className="flex items-center gap-3 text-primary text-[10px] font-black tracking-widest group-hover:gap-5 transition-all cursor-pointer"
+                >
                   <span>EXPLORE MODULE</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </div>
+                </Link>
               </div>
 
               {/* Hover Line */}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import api from '../utils/api'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Link from 'next/link'
@@ -16,8 +16,7 @@ export default function Destinations() {
 
   const fetchDestinations = async () => {
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
-      const response = await axios.get(`${API_URL}/countries`)
+      const response = await api.get('/countries')
 
       if (response.data && response.data.length > 0) {
         const formatted = response.data.map(dest => ({

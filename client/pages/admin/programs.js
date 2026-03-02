@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import AdminLayout from '../../components/AdminLayout';
-import axios from 'axios';
+import api from '../../utils/api';
 
 export default function AdminPrograms() {
   const [programs, setPrograms] = useState([]);
@@ -22,7 +22,7 @@ export default function AdminPrograms() {
 
   const fetchPrograms = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/programs/admin');
+      const res = await api.get('/programs/admin');
       setPrograms(res.data);
     } catch (error) {
       console.error('Error fetching programs:', error);
@@ -34,10 +34,10 @@ export default function AdminPrograms() {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/programs/${editingId}`, formData);
+        await api.put(`/programs/${editingId}`, formData);
         alert('Program updated successfully!');
       } else {
-        await axios.post('http://localhost:5000/api/programs', formData);
+        await api.post('/programs', formData);
         alert('Program created successfully!');
       }
       fetchPrograms();
@@ -57,7 +57,7 @@ export default function AdminPrograms() {
   const handleDelete = async (id) => {
     if (confirm('Are you sure you want to delete this program?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/programs/${id}`);
+        await api.delete(`/programs/${id}`);
         fetchPrograms();
       } catch (error) {
         console.error('Error deleting program:', error);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import AdminLayout from '../../components/AdminLayout';
-import axios from 'axios';
+import api from '../../utils/api';
 import Link from 'next/link';
 
 export default function AdminDashboard() {
@@ -8,7 +8,8 @@ export default function AdminDashboard() {
     programs: 0,
     services: 0,
     countries: 0,
-    subscriptions: 0
+    subscriptions: 0,
+    partners: 0
   });
   const [loading, setLoading] = useState(true);
 
@@ -18,17 +19,19 @@ export default function AdminDashboard() {
 
   const fetchStats = async () => {
     try {
-      const [programs, services, countries, subscriptions] = await Promise.all([
-        axios.get('http://localhost:5000/api/programs/admin'),
-        axios.get('http://localhost:5000/api/services/admin'),
-        axios.get('http://localhost:5000/api/countries/admin'),
-        axios.get('http://localhost:5000/api/subscriptions')
+      const [programs, services, countries, subscriptions, partners] = await Promise.all([
+        api.get('/programs/admin'),
+        api.get('/services/admin'),
+        api.get('/countries/admin'),
+        api.get('/subscriptions'),
+        api.get('/partners')
       ]);
       setStats({
         programs: programs.data.length,
         services: services.data.length,
         countries: countries.data.length,
-        subscriptions: subscriptions.data.length
+        subscriptions: subscriptions.data.length,
+        partners: partners.data.length
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -43,7 +46,8 @@ export default function AdminDashboard() {
         <h1 className="text-3xl font-black text-gray-900 mb-8 tracking-tight">System Status</h1>
 
         {/* Stats Cards */}
-        <div className="grid md:grid-cols-4 gap-6 mb-12">
+        <div className="grid md:grid-cols-5 gap-6 mb-12">
+          {/* ... existing cards ... */}
           <div className="bg-white rounded-2xl shadow-xl shadow-blue-500/5 border border-gray-100 p-8 hover:-translate-y-1 transition-transform duration-300">
             <div className="flex items-center justify-between">
               <div>
@@ -80,17 +84,35 @@ export default function AdminDashboard() {
             </div>
           </div>
 
+          <div className="bg-white rounded-2xl shadow-xl shadow-red-500/5 border border-gray-100 p-8 hover:-translate-y-1 transition-transform duration-300">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-2">Partners</p>
+                <p className="text-5xl font-black text-gray-900">
+                  {loading ? (
+                    <span className="inline-block w-8 h-8 rounded-full border-4 border-gray-200 border-t-red-600 animate-spin"></span>
+                  ) : stats.partners}
+                </p>
+              </div>
+              <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-red-50 rounded-2xl flex items-center justify-center transform rotate-3">
+                <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-white rounded-2xl shadow-xl shadow-green-500/5 border border-gray-100 p-8 hover:-translate-y-1 transition-transform duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-2">Total Countries</p>
+                <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-2">Countries</p>
                 <p className="text-5xl font-black text-gray-900">
                   {loading ? (
                     <span className="inline-block w-8 h-8 rounded-full border-4 border-gray-200 border-t-green-600 animate-spin"></span>
                   ) : stats.countries}
                 </p>
               </div>
-              <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-50 rounded-2xl flex items-center justify-center transform rotate-3">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-50 rounded-2xl flex items-center justify-center transform -rotate-3">
                 <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -108,7 +130,7 @@ export default function AdminDashboard() {
                   ) : stats.subscriptions}
                 </p>
               </div>
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl flex items-center justify-center transform -rotate-3">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl flex items-center justify-center transform rotate-3">
                 <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                 </svg>
@@ -120,7 +142,7 @@ export default function AdminDashboard() {
         {/* Quick Actions */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
           <h2 className="text-xl font-black text-gray-900 mb-6 uppercase tracking-widest">Rapid Operations</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-4 gap-6">
             <Link href="/admin/programs" className="group flex flex-col gap-4 p-6 border-2 border-gray-100 rounded-2xl hover:border-blue-500 hover:bg-blue-50/50 hover:shadow-lg transition-all duration-300 text-center items-center">
               <div className="w-14 h-14 bg-white shadow-md rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:-translate-y-2 transition-all duration-300">
                 <svg className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,8 +150,20 @@ export default function AdminDashboard() {
                 </svg>
               </div>
               <div>
-                <p className="font-bold text-gray-900 group-hover:text-blue-900">Manage Programs</p>
-                <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mt-1">Add or edit records</p>
+                <p className="font-bold text-gray-900 group-hover:text-blue-900">Programs</p>
+                <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mt-1">Manage Records</p>
+              </div>
+            </Link>
+
+            <Link href="/admin/partners" className="group flex flex-col gap-4 p-6 border-2 border-gray-100 rounded-2xl hover:border-red-500 hover:bg-red-50/50 hover:shadow-lg transition-all duration-300 text-center items-center">
+              <div className="w-14 h-14 bg-white shadow-md rounded-2xl flex items-center justify-center group-hover:bg-red-600 group-hover:-translate-y-2 transition-all duration-300">
+                <svg className="w-6 h-6 text-red-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-bold text-gray-900 group-hover:text-red-900">Partner Requests</p>
+                <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mt-1">View Enquiries</p>
               </div>
             </Link>
 
@@ -140,8 +174,8 @@ export default function AdminDashboard() {
                 </svg>
               </div>
               <div>
-                <p className="font-bold text-gray-900 group-hover:text-purple-900">Manage Services</p>
-                <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mt-1">Add or edit records</p>
+                <p className="font-bold text-gray-900 group-hover:text-purple-900">Services</p>
+                <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mt-1">Manage Records</p>
               </div>
             </Link>
 
@@ -152,8 +186,8 @@ export default function AdminDashboard() {
                 </svg>
               </div>
               <div>
-                <p className="font-bold text-gray-900 group-hover:text-green-900">Manage Countries</p>
-                <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mt-1">Add or edit records</p>
+                <p className="font-bold text-gray-900 group-hover:text-green-900">Countries</p>
+                <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mt-1">Manage Records</p>
               </div>
             </Link>
           </div>

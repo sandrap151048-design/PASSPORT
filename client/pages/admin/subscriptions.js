@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import AdminLayout from '../../components/AdminLayout';
-import axios from 'axios';
+import api from '../../utils/api';
 
 export default function AdminSubscriptions() {
     const [subscriptions, setSubscriptions] = useState([]);
@@ -12,7 +12,7 @@ export default function AdminSubscriptions() {
 
     const fetchSubscriptions = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/subscriptions');
+            const response = await api.get('/subscriptions');
             setSubscriptions(response.data);
         } catch (error) {
             console.error('Error fetching subscriptions:', error);

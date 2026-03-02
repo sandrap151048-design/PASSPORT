@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import AdminLayout from '../../components/AdminLayout';
-import axios from 'axios';
+import api from '../../utils/api';
 
 export default function AdminServices() {
   const [services, setServices] = useState([]);
@@ -20,7 +20,7 @@ export default function AdminServices() {
 
   const fetchServices = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/services/admin');
+      const res = await api.get('/services/admin');
       setServices(res.data);
     } catch (error) {
       console.error('Error fetching services:', error);
@@ -32,10 +32,10 @@ export default function AdminServices() {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/services/${editingId}`, formData);
+        await api.put(`/services/${editingId}`, formData);
         alert('Service updated successfully!');
       } else {
-        await axios.post('http://localhost:5000/api/services', formData);
+        await api.post('/services', formData);
         alert('Service created successfully!');
       }
       fetchServices();
@@ -55,7 +55,7 @@ export default function AdminServices() {
   const handleDelete = async (id) => {
     if (confirm('Are you sure you want to delete this service?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/services/${id}`);
+        await api.delete(`/services/${id}`);
         fetchServices();
       } catch (error) {
         console.error('Error deleting service:', error);

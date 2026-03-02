@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import api from '../utils/api'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -13,14 +14,31 @@ export default function Navbar() {
   const [studyDropdown, setStudyDropdown] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [countries, setCountries] = useState([])
+  const [services, setServices] = useState([])
   const [isScrolled, setIsScrolled] = useState(false)
+  const [partnerModalOpen, setPartnerModalOpen] = useState(false)
+  const [partnerData, setPartnerData] = useState({ name: '', email: '', phone: '', company: '' })
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-
   const isActive = (path) => router.pathname === path
-
   const isAboutPage = router.pathname === '/about'
   const isEventsPage = router.pathname === '/events'
+
+  const handlePartnerSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await api.post('/partners', partnerData);
+      setPartnerModalOpen(false);
+      setPartnerData({ name: '', email: '', phone: '', company: '' });
+      alert('Partner enquiry sent successfully!');
+    } catch (err) {
+      alert('Error sending enquiry. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,23 +49,29 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/countries')
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) setCountries(data)
-        else if (data && Array.isArray(data.data)) setCountries(data.data)
+    // Fetch countries
+    api.get('/countries')
+      .then(res => {
+        const data = res.data;
+        if (Array.isArray(data)) setCountries(data);
+        else if (data && Array.isArray(data.data)) setCountries(data.data);
       })
-      .catch(err => console.error('Error fetching countries:', err))
+      .catch(err => console.error('Error fetching countries:', err));
+    // Fetch services for dropdown
+    api.get('/services')
+      .then(res => {
+        const data = res.data;
+        if (Array.isArray(data)) setServices(data);
+        else if (data && Array.isArray(data.data)) setServices(data.data);
+      })
+      .catch(err => console.error('Error fetching services:', err));
   }, [])
 
   return (
     <>
-      {/* Main Navbar */}
-      {/* Main Navbar */}
       <nav className={`fixed w-full top-0 z-50 transition-all duration-500 shadow-xl ${isAboutPage ? 'bg-[#6345ED]' : isEventsPage ? 'bg-[#1a1045]' : 'bg-brand-blue'} ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between">
-            {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group transition-all duration-300">
               <div className={`w-10 h-10 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform bg-white shadow-white/10 ${isAboutPage ? 'text-[#6345ED]' : isEventsPage ? 'text-[#1a1045]' : 'text-brand-blue'}`}>
                 <LogoIcon className="w-6 h-6" />
@@ -58,7 +82,6 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Menu */}
             <div className="hidden lg:flex items-center flex-1 justify-center space-x-7">
               {[
                 { name: 'Programs', path: '/programs' },
@@ -80,30 +103,32 @@ export default function Navbar() {
                     <span className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 h-0.5 bg-brand-orange transition-all duration-300 ${isActive(link.path) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                   </Link>
 
-                  {/* World Passport Services Dropdown */}
-                  {link.hasDropdown && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 w-72 bg-white rounded-2xl shadow-2xl shadow-brand-blue/20 flex flex-col pt-2 pb-2 border border-neutral-100/50 z-50">
-                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-neutral-100/50 rounded-tl-sm"></div>
-
-                      <div className="relative z-10 p-2">
-                        <div className="px-4 py-2 border-b border-neutral-50 mb-2">
-                          <span className="text-[9px] font-black text-brand-orange uppercase tracking-[0.2em]">World Passport Exclusives</span>
+                  {link.hasDropdown && link.name === 'Services' && services.length > 0 && (
+                    <div className="absolute top-full left-0 mt-4 w-64 bg-white rounded-2xl shadow-2xl overflow-hidden opacity-0 invisible translate-y-2 group-hover/nav:opacity-100 group-hover/nav:visible group-hover/nav:translate-y-0 transition-all duration-300 border border-neutral-100">
+                      <div className="p-4 bg-neutral-50 border-b border-neutral-100 flex items-center justify-between">
+                        <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400">Recent Services</span>
+                        <div className="flex gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
                         </div>
-                        {[
-                          { name: 'University Admissions', path: '/services#demo-s1' },
-                          { name: 'Visa Processing', path: '/services#demo-s2' },
-                          { name: 'Scholarships', path: '/services#demo-s3' },
-                          { name: 'Pre-Departure', path: '/services#demo-s4' },
-                          { name: 'Post-Arrival', path: '/services#demo-s5' }
-                        ].map((subItem, idx) => (
+                      </div>
+                      <div className="py-2">
+                        {services.slice(0, 5).map((service, idx) => (
                           <Link
-                            key={idx}
-                            href={subItem.path}
-                            className="block px-4 py-3 text-[9px] font-extrabold uppercase tracking-widest text-neutral-600 hover:text-brand-blue hover:bg-neutral-50 hover:pl-6 rounded-xl transition-all"
+                            key={service._id}
+                            href={`/services/${service._id}`}
+                            className="flex items-center gap-3 px-6 py-3 hover:bg-neutral-50 text-neutral-600 hover:text-brand-blue transition-colors group/item"
                           >
-                            {subItem.name}
+                            <span className="text-[10px] font-bold uppercase tracking-wider">{service.title}</span>
+                            <svg className="w-3 h-3 opacity-0 group-hover/item:opacity-100 -translate-x-2 group-hover/item:translate-x-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"></path></svg>
                           </Link>
                         ))}
+                        <div className="mx-4 my-2 border-t border-dotted border-neutral-200" />
+                        <Link
+                          href="/services"
+                          className="flex items-center justify-center px-6 py-3 text-[9px] font-black text-brand-orange uppercase tracking-widest hover:bg-brand-orange hover:text-white transition-all"
+                        >
+                          View All Services
+                        </Link>
                       </div>
                     </div>
                   )}
@@ -111,33 +136,28 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Actions */}
             <div className="hidden lg:flex items-center gap-4">
               <Link href="/login">
                 <button className="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all border border-white/20 text-white hover:bg-white/10 active:scale-95">
                   Portal Login
                 </button>
               </Link>
-              <Link href="/contact">
-                <button className={`px-5 py-3 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all shadow-xl hover:-translate-y-0.5 active:scale-95 flex items-center gap-2 bg-white ${isScrolled ? 'shadow-white/10' : 'shadow-black/5'} ${isAboutPage ? 'text-[#6345ED]' : isEventsPage ? 'text-[#1a1045]' : 'text-brand-blue'}`}>
-                  Enquire Now
-                </button>
-              </Link>
+              <button
+                onClick={() => setPartnerModalOpen(true)}
+                className={`px-5 py-3 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all shadow-xl hover:-translate-y-0.5 active:scale-95 flex items-center gap-2 bg-white ${isScrolled ? 'shadow-white/10' : 'shadow-black/5'} ${isAboutPage ? 'text-[#6345ED]' : isEventsPage ? 'text-[#1a1045]' : 'text-brand-blue'}`}
+              >
+                Become a Partner
+              </button>
             </div>
 
-            {/* Mobile Actions */}
             <div className="flex lg:hidden items-center gap-4">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-2 text-white bg-white/10 rounded-lg border border-white/20"
-              >
+              <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-white bg-white/10 rounded-lg border border-white/20">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden absolute top-full left-0 w-full h-[calc(100vh-80px)] overflow-y-auto bg-white border-t border-neutral-100 p-8 shadow-2xl z-50 animate-fade-in-up">
             <div className="flex flex-col gap-6">
@@ -152,57 +172,41 @@ export default function Navbar() {
               ].map((item) => (
                 <div key={item.path} className="flex flex-col">
                   <div className="flex items-center justify-between">
-                    <Link
-                      href={item.path}
-                      className="text-sm font-bold uppercase tracking-widest text-neutral-600 hover:text-brand-blue transition-colors"
-                      onClick={() => !item.hasDropdown && setIsOpen(false)}
-                    >
+                    <Link href={item.path} className="text-sm font-bold uppercase tracking-widest text-neutral-600 hover:text-brand-blue transition-colors" onClick={() => !item.hasDropdown && setIsOpen(false)}>
                       {item.name}
                     </Link>
-                    {item.hasDropdown && (
-                      <button onClick={() => setStudyDropdown(!studyDropdown)} className="p-2 -mr-2 text-neutral-500 hover:text-brand-blue transition-colors bg-neutral-50 rounded-lg">
-                        <svg className={`w-4 h-4 transition-transform duration-300 ${studyDropdown ? 'rotate-180 text-brand-blue' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                      </button>
-                    )}
                   </div>
-
-                  {item.hasDropdown && studyDropdown && (
-                    <div className="mt-4 pl-4 py-2 border-l-2 border-brand-orange/30 flex flex-col gap-5 animate-slide-up-fade">
-                      {[
-                        { name: 'Global University Admissions', path: '/services#demo-s1' },
-                        { name: 'Immigration & Visa Processing', path: '/services#demo-s2' },
-                        { name: 'Scholarship & Financial Aid', path: '/services#demo-s3' },
-                        { name: 'Premium Pre-Departure Suite', path: '/services#demo-s4' },
-                        { name: 'Post-Arrival Concierge Suite', path: '/services#demo-s5' }
-                      ].map((subItem, idx) => (
-                        <Link
-                          key={idx}
-                          href={subItem.path}
-                          onClick={() => setIsOpen(false)}
-                          className="text-[11px] font-bold uppercase tracking-widest text-neutral-500 hover:text-brand-blue transition-colors"
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
                 </div>
               ))}
-
-
-              <Link href="/contact" onClick={() => setIsOpen(false)}>
-                <button className="w-full bg-brand-blue text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-xl shadow-brand-blue/20 hover:bg-brand-blue-dark transition-colors">
-                  Enquire Now
-                </button>
-              </Link>
+              <button onClick={() => { setIsOpen(false); setPartnerModalOpen(true); }} className="w-full bg-brand-blue text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-xl shadow-brand-blue/20 hover:bg-brand-blue-dark transition-colors">
+                Become a Partner
+              </button>
             </div>
           </div>
         )}
       </nav>
 
-      {/* Sidebar Panel */}
+      {partnerModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-[2rem] w-full max-w-md p-10 relative shadow-2xl animate-scale-up text-neutral-900 border border-neutral-100">
+            <button onClick={() => setPartnerModalOpen(false)} className="absolute top-6 right-6 text-neutral-400 hover:text-neutral-900 transition-colors">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+            <h3 className="text-2xl font-black mb-2 uppercase tracking-tight">Become a Partner</h3>
+            <p className="text-neutral-500 text-sm mb-8 font-medium">Join our global network. Submit your details and our team will connect with you.</p>
+            <form onSubmit={handlePartnerSubmit} className="space-y-4">
+              <input type="text" placeholder="Your Name" required className="w-full px-6 py-4 bg-neutral-50 rounded-xl border border-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none font-bold text-sm" value={partnerData.name} onChange={(e) => setPartnerData({ ...partnerData, name: e.target.value })} />
+              <input type="email" placeholder="Email Address" required className="w-full px-6 py-4 bg-neutral-50 rounded-xl border border-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none font-bold text-sm" value={partnerData.email} onChange={(e) => setPartnerData({ ...partnerData, email: e.target.value })} />
+              <input type="tel" placeholder="Phone Number" required className="w-full px-6 py-4 bg-neutral-50 rounded-xl border border-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none font-bold text-sm" value={partnerData.phone} onChange={(e) => setPartnerData({ ...partnerData, phone: e.target.value })} />
+              <input type="text" placeholder="Company/Agency Name" required className="w-full px-6 py-4 bg-neutral-50 rounded-xl border border-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none font-bold text-sm" value={partnerData.company} onChange={(e) => setPartnerData({ ...partnerData, company: e.target.value })} />
+              <button type="submit" disabled={loading} className="w-full bg-red-600 text-white py-4 rounded-xl font-black uppercase tracking-widest text-[11px] shadow-xl shadow-red-500/20 hover:bg-red-700 transition-all hover:-translate-y-1 active:scale-95 disabled:opacity-50">
+                {loading ? 'Submitting...' : 'Submit Partnership Enquiry'}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
       {sidebarOpen && (
         <>
           <div className="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm z-[100] animate-fade-in" onClick={() => setSidebarOpen(false)} />
@@ -210,13 +214,9 @@ export default function Navbar() {
             <button onClick={() => setSidebarOpen(false)} className="absolute top-6 right-6 text-neutral-400 hover:text-neutral-900 transition-colors">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
-
             <div className="mt-8">
               <h2 className="text-2xl font-black tracking-tighter mb-6">WORLD PASSPORT</h2>
-              <p className="text-neutral-500 leading-relaxed mb-10 text-base">
-                Empowering students to reach their global potential through trusted institutional partnerships and strategic academic guidance.
-              </p>
-
+              <p className="text-neutral-500 leading-relaxed mb-10 text-base">Empowering students to reach their global potential through trusted institutional partnerships and strategic academic guidance.</p>
               <div className="space-y-8">
                 <div>
                   <h3 className="text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">Connect</h3>
@@ -227,11 +227,6 @@ export default function Navbar() {
                   <h3 className="text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">Reach Us</h3>
                   <p className="font-medium text-neutral-600">Kandamkulathy Towers, 5th Floor, M.G. Road, KPCC Junction, Shenoys, Ernakulam, Kerala - 682011</p>
                 </div>
-              </div>
-
-              <div className="mt-12 flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg></a>
-                <a href="#" className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center hover:bg-blue-400 hover:text-white transition-all"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" /></svg></a>
               </div>
             </div>
           </div>

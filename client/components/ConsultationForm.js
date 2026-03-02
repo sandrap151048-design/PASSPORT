@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import api from '../utils/api'
 import Image from 'next/image'
 
 export default function ConsultationForm() {
@@ -19,8 +19,7 @@ export default function ConsultationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
-      await axios.post(`${API_URL}/consultations`, formData)
+      await api.post('/consultations', formData)
       setStatus('success')
       setFormData({ name: '', email: '', phone: '', service: '', message: '' })
       setTimeout(() => setStatus(''), 5000)

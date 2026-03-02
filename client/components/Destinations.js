@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import axios from 'axios'
+import api from '../utils/api'
 import Link from 'next/link'
 
 export default function Destinations() {
@@ -158,8 +158,7 @@ export default function Destinations() {
 
   const fetchDestinations = async () => {
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
-      const response = await axios.get(`${API_URL}/destinations`)
+      const response = await api.get('/destinations')
       if (response.data.length > 0) {
         setDestinations(response.data)
       } else {

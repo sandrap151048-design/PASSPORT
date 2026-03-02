@@ -1,10 +1,29 @@
 import { useState } from 'react'
+import api from '../utils/api'
 import Link from 'next/link'
 
 export default function Footer() {
   const [subscribeData, setSubscribeData] = useState({ email: '', interest: "I'm Interested in" });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
+
+  const [partnerModalOpen, setPartnerModalOpen] = useState(false);
+  const [partnerData, setPartnerData] = useState({ name: '', email: '', phone: '', company: '' });
+
+  const handlePartnerSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await api.post('/partners', partnerData);
+      setStatus({ type: 'success', message: 'Partner enquiry sent!' });
+      setPartnerModalOpen(false);
+      setPartnerData({ name: '', email: '', phone: '', company: '' });
+    } catch (err) {
+      setStatus({ type: 'error', message: 'Error sending enquiry.' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubscribe = async () => {
     if (!subscribeData.email) {
@@ -16,25 +35,20 @@ export default function Footer() {
     setStatus({ type: '', message: '' });
 
     try {
-      const res = await fetch('http://localhost:5000/api/subscriptions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: subscribeData.email,
-          interest: subscribeData.interest !== "I'm Interested in" ? subscribeData.interest : 'General'
-        })
+      const res = await api.post('/subscriptions', {
+        email: subscribeData.email,
+        interest: subscribeData.interest !== "I'm Interested in" ? subscribeData.interest : 'General'
       });
 
-      const data = await res.json();
-      if (res.ok) {
+      if (res.status === 201 || res.status === 200) {
         setStatus({ type: 'success', message: 'Successfully subscribed!' });
         setSubscribeData({ email: '', interest: "I'm Interested in" });
       } else {
-        setStatus({ type: 'error', message: data.message || 'Error subscribing.' });
+        setStatus({ type: 'error', message: res.data.message || 'Error subscribing.' });
       }
     } catch (error) {
       console.error('Submission error:', error);
-      setStatus({ type: 'error', message: 'An error occurred. Please try again later.' });
+      setStatus({ type: 'error', message: error.response?.data?.message || 'An error occurred. Please try again later.' });
     } finally {
       setLoading(false);
     }
@@ -208,10 +222,73 @@ export default function Footer() {
             <div className="flex gap-10 text-[11px] font-bold tracking-widest text-neutral-500 uppercase">
               <Link href="/contact" className="hover:text-primary transition-colors">Privacy Policy</Link>
               <Link href="/contact" className="hover:text-primary transition-colors">Terms of Service</Link>
+              <button
+                onClick={() => setPartnerModalOpen(true)}
+                className="px-6 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-all font-black text-[9px] uppercase tracking-widest"
+              >
+                Become a Partner
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {partnerModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-[2rem] w-full max-w-md p-10 relative shadow-2xl animate-scale-up text-neutral-900 border border-neutral-100">
+            <button
+              onClick={() => setPartnerModalOpen(false)}
+              className="absolute top-6 right-6 text-neutral-400 hover:text-neutral-900 transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+            <h3 className="text-2xl font-black mb-2 uppercase tracking-tight">Become a Partner</h3>
+            <p className="text-neutral-500 text-sm mb-8 font-medium">Join our global network. Submit your details and our team will connect with you.</p>
+
+            <form onSubmit={handlePartnerSubmit} className="space-y-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                required
+                className="w-full px-6 py-4 bg-neutral-50 rounded-xl border border-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none font-bold text-sm"
+                value={partnerData.name}
+                onChange={(e) => setPartnerData({ ...partnerData, name: e.target.value })}
+              />
+              <input
+                type="email"
+                placeholder="Email Address"
+                required
+                className="w-full px-6 py-4 bg-neutral-50 rounded-xl border border-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none font-bold text-sm"
+                value={partnerData.email}
+                onChange={(e) => setPartnerData({ ...partnerData, email: e.target.value })}
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                required
+                className="w-full px-6 py-4 bg-neutral-50 rounded-xl border border-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none font-bold text-sm"
+                value={partnerData.phone}
+                onChange={(e) => setPartnerData({ ...partnerData, phone: e.target.value })}
+              />
+              <input
+                type="text"
+                placeholder="Company/Agency Name"
+                required
+                className="w-full px-6 py-4 bg-neutral-50 rounded-xl border border-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none font-bold text-sm"
+                value={partnerData.company}
+                onChange={(e) => setPartnerData({ ...partnerData, company: e.target.value })}
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-red-600 text-white py-4 rounded-xl font-black uppercase tracking-widest text-[11px] shadow-xl shadow-red-500/20 hover:bg-red-700 transition-all hover:-translate-y-1 active:scale-95 disabled:opacity-50"
+              >
+                {loading ? 'Submitting...' : 'Submit Partnership Enquiry'}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </footer>
   )
 }

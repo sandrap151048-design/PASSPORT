@@ -23,6 +23,7 @@ app.use('/api/countries', require('./routes/countries'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/subscriptions', require('./routes/subscriptions'));
 app.use('/api/universities', require('./routes/universities'));
+app.use('/api/partners', require('./routes/partners'));
 
 app.get('/', (req, res) => {
   res.json({ message: 'World Passport API' });

@@ -12,6 +12,18 @@ router.get('/', (req, res) => {
   }
 });
 
+// Get single service
+router.get('/:id', (req, res) => {
+  try {
+    const services = getCollection('services');
+    const service = services.find(s => s._id === req.params.id);
+    if (!service) return res.status(404).json({ message: 'Service not found' });
+    res.json(service);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Get all services (admin)
 router.get('/admin', (req, res) => {
   try {

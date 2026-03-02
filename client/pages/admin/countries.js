@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import AdminLayout from '../../components/AdminLayout';
-import axios from 'axios';
+import api from '../../utils/api';
 
 export default function AdminCountries() {
   const [countries, setCountries] = useState([]);
@@ -21,7 +21,7 @@ export default function AdminCountries() {
 
   const fetchCountries = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/countries/admin');
+      const res = await api.get('/countries/admin');
       setCountries(res.data);
     } catch (error) {
       console.error('Error fetching countries:', error);
@@ -33,10 +33,10 @@ export default function AdminCountries() {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/countries/${editingId}`, formData);
+        await api.put(`/countries/${editingId}`, formData);
         alert('Country updated successfully!');
       } else {
-        await axios.post('http://localhost:5000/api/countries', formData);
+        await api.post('/countries', formData);
         alert('Country created successfully!');
       }
       fetchCountries();
@@ -56,7 +56,7 @@ export default function AdminCountries() {
   const handleDelete = async (id) => {
     if (confirm('Are you sure you want to delete this country?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/countries/${id}`);
+        await api.delete(`/countries/${id}`);
         fetchCountries();
       } catch (error) {
         console.error('Error deleting country:', error);

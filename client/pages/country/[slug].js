@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Link from 'next/link'
-import axios from 'axios'
+import api from '../../utils/api'
 import fallbackCountries from '../../data/fallbackCountries'
 
 export default function CountryDetail() {
@@ -31,8 +31,7 @@ export default function CountryDetail() {
 
   const fetchCountryData = async () => {
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
-      const response = await axios.get(`${API_URL}/countries`)
+      const response = await api.get('/countries')
       const countries = response.data
 
       const foundCountry = countries.find(c =>
@@ -168,8 +167,8 @@ export default function CountryDetail() {
         </div>
       </section>
 
-      {/* Sticky Pill Tabs Navigation */}
-      <section className="sticky top-20 z-40 py-6 transition-all duration-300">
+      {/* Pill Tabs Navigation */}
+      <section className="relative z-40 py-12 bg-white border-b border-slate-100 transition-all duration-300">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex items-center justify-center">
             <div className="flex overflow-x-auto no-scrollbar gap-2 p-2 bg-white/80 backdrop-blur-2xl border border-white rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.05)]">

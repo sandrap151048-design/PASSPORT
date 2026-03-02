@@ -3,7 +3,13 @@
     "_id": "ser_1",
     "title": "Overseas Education",
     "description": "Comprehensive guidance for students to choose the best universities and courses globally.",
-    "imageUrl": "/images/service-study-abroad.jpg",
+    "imageUrl": "/images/service-overseas-education.png",
+    "features": [
+      "Global University Admissions",
+      "Scholarship Assistance",
+      "Course Selection Support",
+      "Career Counseling"
+    ],
     "isActive": true,
     "createdAt": "2026-02-28T06:29:14.542Z"
   },
@@ -11,7 +17,13 @@
     "_id": "ser_2",
     "title": "Visa Assistance",
     "description": "Expert help in processing all types of visas for travel, study, and work.",
-    "imageUrl": "/images/service-visa.jpg",
+    "imageUrl": "/images/service-visa-assistance.png",
+    "features": [
+      "Student Visa Processing",
+      "Work Permit Assistance",
+      "Documentation Review",
+      "Interview Preparation"
+    ],
     "isActive": true,
     "createdAt": "2026-02-28T06:29:14.562Z"
   },
@@ -19,7 +31,13 @@
     "_id": "ser_3",
     "title": "Flight Booking",
     "description": "Affordable flight booking services for students and travelers worldwide.",
-    "imageUrl": "/images/service-immigration.jpg",
+    "imageUrl": "/images/service-flight-booking.png",
+    "features": [
+      "Student Discounted Fares",
+      "Last-minute Bookings",
+      "Extra Luggage Assistance",
+      "Flexible Rescheduling"
+    ],
     "isActive": true,
     "createdAt": "2026-02-28T06:29:14.562Z"
   },
@@ -27,7 +45,13 @@
     "_id": "ser_4",
     "title": "Hotel Booking",
     "description": "Secure and comfortable accommodation bookings globally.",
-    "imageUrl": "/images/service-settlement.jpg",
+    "imageUrl": "/images/service-hotel-booking.png",
+    "features": [
+      "Safe Student Residences",
+      "Luxury Hotel Stays",
+      "Airport Transfers",
+      "24/7 Support"
+    ],
     "isActive": true,
     "createdAt": "2026-02-28T06:29:14.562Z"
   },
@@ -35,7 +59,13 @@
     "_id": "ser_5",
     "title": "Tour Booking",
     "description": "Customized tour packages and vacation planning for global destinations.",
-    "imageUrl": "/images/service-work-visa.jpg",
+    "imageUrl": "/images/service-tour-booking.png",
+    "features": [
+      "Customized Itineraries",
+      "Global Sightseeing Tours",
+      "Group Travel Packages",
+      "Luxury Vacation Planning"
+    ],
     "isActive": true,
     "createdAt": "2026-02-28T06:29:14.562Z"
   }
