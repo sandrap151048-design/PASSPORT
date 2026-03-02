@@ -4,7 +4,10 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
 
 const api = axios.create({
     baseURL: API_URL,
-    timeout: 5000, // 5 second timeout to fail fast on Vercel
+    timeout: 15000, // 15 second timeout for cross-network requests
+    headers: {
+        'Content-Type': 'application/json',
+    }
 })
 
 export default api

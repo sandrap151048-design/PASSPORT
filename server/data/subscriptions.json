@@ -12,5 +12,12 @@
     "interest": "Visa Assistance",
     "createdAt": "2026-03-02T04:27:14.587Z",
     "status": "pending"
+  },
+  {
+    "_id": "rgsi83bbamm8u5rdt",
+    "email": "samudra@gmail.com",
+    "interest": "Scholarships",
+    "createdAt": "2026-03-02T07:06:48.161Z",
+    "status": "pending"
   }
 ]
