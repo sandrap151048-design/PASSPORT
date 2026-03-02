@@ -7,8 +7,8 @@ import Image from 'next/image'
 export default function Login() {
   const router = useRouter()
   const [formData, setFormData] = useState({
-    email: 'admin@worldpassport.in',
-    password: 'admin123',
+    email: '',
+    password: '',
     rememberMe: false
   })
   const [error, setError] = useState('')
@@ -155,7 +155,7 @@ export default function Login() {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-400"
-                  placeholder="admin@worldpassport.in"
+                  placeholder="Enter your email"
                   required
                 />
               </div>
@@ -179,7 +179,7 @@ export default function Login() {
                   value={formData.password}
                   onChange={handleChange}
                   className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-400"
-                  placeholder="••••••••"
+                  placeholder="Enter your password"
                   required
                 />
                 <button
