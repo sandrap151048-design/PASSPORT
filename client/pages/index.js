@@ -1,6 +1,5 @@
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
-import FamousUniversities from '../components/FamousUniversities'
 import InfoBanner from '../components/InfoBanner'
 import About from '../components/About'
 import WhyChooseUs from '../components/WhyChooseUs'
@@ -16,7 +15,6 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
-      <FamousUniversities />
       <InfoBanner />
       <About />
       <WhyChooseUs />
